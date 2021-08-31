@@ -7,6 +7,7 @@ import { DialogModule } from 'primeng/dialog';
 import { PaginatorModule } from 'primeng/paginator';
 import { CalendarModule } from 'primeng/calendar';
 import { SliderModule } from 'primeng/slider';
+import {SidebarModule} from 'primeng/sidebar';
 
 
 
@@ -20,7 +21,8 @@ import { SliderModule } from 'primeng/slider';
     InputNumberModule,
     InputTextModule,
     OrderListModule,
-    ButtonModule
+    ButtonModule,
+    SidebarModule
 
   ],
   exports: [
@@ -31,7 +33,8 @@ import { SliderModule } from 'primeng/slider';
     InputNumberModule,
     InputTextModule,
     OrderListModule,
-    ButtonModule
+    ButtonModule,
+    SidebarModule
 
 
 
