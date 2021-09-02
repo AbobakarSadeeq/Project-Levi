@@ -39,7 +39,7 @@
               "node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"
             ],
             "scripts": [
-              "/src/assets/CustomJs/Custom.js"
+            
 
             ],
             "vendorChunk": true,

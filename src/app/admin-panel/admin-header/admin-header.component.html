@@ -1,26 +1,22 @@
 <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
   <!-- should wrie the propertyName start with Capital but in vs code should be in camelCasee otherwise it will not work. -->
-   <a (click)="visibleSidebar1 = true" class="navbar-brand" routerLinkActive="active" style="cursor:pointer; padding-left: 10px;"><i
-      class="fas fa-bars fa-lg"></i>
+  <a (click)="visibleSidebar1 = true" class="navbar-brand" routerLinkActive="active"
+    style="cursor:pointer; padding-left: 10px;"><i class="fas fa-bars fa-lg"></i>
   </a>
 
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ">
       <li class="nav-item ">
-        <a class="nav-link " style="cursor:pointer; font-size: 18px;" [routerLink]="['/Admin']"
+        <a class="nav-link " style="cursor:pointer; font-size: 18px;" [routerLink]="['/Admin/Dashboard']"
           routerLinkActive="active">Abobakar Sadeeq</a>
       </li>
     </ul>
     <ul class="navbar-nav  ms-auto" style="padding-right: 10px;">
 
-      <li class="nav-item ">
-        <a class="nav-link " style="cursor:pointer; padding-top: 15px;" routerLinkActive="active"
-         > <i class="fa" style="font-size:24px">&#xf07a;</i>
-          <span class='badge badge-warning' id='lblCartCount'> {{0}} </span></a>
-      </li>
+
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown"  role="button" data-bs-toggle="dropdown"
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">
           <img src="../../../assets/Pictures/fox.jpg" width="40" height="40" class="rounded-circle">
           Abobakar Sadeeq
@@ -48,10 +44,51 @@
 
 
 <!-- SideBar Content -->
-<p-sidebar [(visible)]="visibleSidebar1" [style]="{width:'18em', background:'black'}"   >
-   <a [routerLink]="['/Admin']"><i class="fas fa-user" style="font-size: 25px; color:#ffffff; margin-left:55px;"  > Users </i></a><hr style="color: white;">
-   <a  [routerLink]="['/Admin']"><i class="fas fa-dollar-sign" style="font-size: 25px; color:#ffffff; margin-left:55px;"  > Account </i></a><hr style="color: white;">
+<p-sidebar [(visible)]="visibleSidebar1" [style]="{width:'18em', background:'black'}">
+  <a [routerLink]="['/Admin/Dashboard']"><i class="fas fa-tachometer"
+      style="font-size: 25px; color:#ffffff; margin-left:35px;"> Dashboard </i></a>
+  <hr style="color: white;">
+
+  <a routerLinkActive="active-link" [routerLink]="['/Admin/User']" routerLinkActive="active"><i class="fas fa-user"
+      style="font-size: 25px; color:#ffffff; margin-left:35px;"> Users </i></a>
+  <hr style="color: white;">
+  <a [routerLink]="['/Admin/Account']" routerLinkActive="active"><i class="fas fa-dollar-sign"
+      style="font-size: 25px; color:#ffffff; margin-left:35px;"> Account </i></a>
+  <hr style="color: white;">
+
+  <!-- Drop-Down-List -->
+  <a style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
+    (click)="showDropDown.firstDropDown= !showDropDown.firstDropDown"><i style="font-size: 25px; color:#ffffff; margin-left:35px;"
+      class="fas fa-caret-down" aria-hidden="true">&nbsp; Product</i></a>
+  <div *ngIf="showDropDown.firstDropDown">
+    <ul style="font-size: 17px;">
+      <li style="color: #ffffff; padding: 8px;">
+        <a [routerLink]="[]" routerLinkActive="active-link" routerLinkActive="active"><i class="fas fa-dollar-sign"
+            style="font-size: 20px; color:#ffffff; margin-left:35px;"> Account </i></a>
+      </li>
+      <li style="color: #ffffff; padding: 8px;">
+        <a [routerLink]="[]" routerLinkActive="active-link" routerLinkActive="active"><i class="fas fa-user"
+            style="font-size: 20px; color:#ffffff; margin-left:35px;"> Users </i></a>
+      </li>
+    </ul>
+  </div>
+  <hr style="color: white;">
+
+  <!-- Second Drop-Down-List -->
+  <a style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
+    (click)="showDropDown.secondDropDown= !showDropDown.secondDropDown"><i style="font-size: 25px; color:#ffffff; margin-left:35px;"
+      class="fas fa-caret-down" aria-hidden="true">&nbsp; Extra Product Info</i></a>
+  <div *ngIf="showDropDown.secondDropDown">
+    <ul style="font-size: 17px;">
+      <li style="color: #ffffff; padding: 8px;">
+        <a [routerLink]="['/Admin/Category']" routerLinkActive="active-link" routerLinkActive="active"><i class="fas fa-warehouse"
+            style="font-size: 20px; color:#ffffff; margin-left:35px;"> Category </i></a>
+      </li>
+      <li style="color: #ffffff; padding: 8px;">
+        <a [routerLink]="['/Admin/Brand']" routerLinkActive="active-link" routerLinkActive="active"><i class="fab fa-stack-overflow"
+            style="font-size: 20px; color:#ffffff; margin-left:35px;"> Brand </i></a>
+      </li>
+    </ul>
+  </div>
 
 </p-sidebar>
-
-

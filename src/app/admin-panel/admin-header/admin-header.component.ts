@@ -9,7 +9,7 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AdminHeaderComponent implements OnInit {
 
   visibleSidebar1:any
-
+  showDropDown = {firstDropDown:false, secondDropDown:false};
 
   constructor() { }
 
