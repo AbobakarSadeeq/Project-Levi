@@ -63,8 +63,8 @@
   <div *ngIf="showDropDown.firstDropDown">
     <ul style="font-size: 17px;">
       <li style="color: #ffffff; padding: 8px;">
-        <a [routerLink]="[]" routerLinkActive="active-link" routerLinkActive="active"><i class="fas fa-dollar-sign"
-            style="font-size: 20px; color:#ffffff; margin-left:35px;"> Account </i></a>
+        <a [routerLink]="['/Admin/Mobile']" routerLinkActive="active-link" routerLinkActive="active"><i class="fas fa-mobile"
+            style="font-size: 20px; color:#ffffff; margin-left:35px;"> Mobile </i></a>
       </li>
       <li style="color: #ffffff; padding: 8px;">
         <a [routerLink]="[]" routerLinkActive="active-link" routerLinkActive="active"><i class="fas fa-user"
@@ -73,7 +73,6 @@
     </ul>
   </div>
   <hr style="color: white;">
-
   <!-- Second Drop-Down-List -->
   <a style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
     (click)="showDropDown.secondDropDown= !showDropDown.secondDropDown"><i style="font-size: 25px; color:#ffffff; margin-left:35px;"

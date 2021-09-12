@@ -16,6 +16,11 @@ const routes: Routes = [
   {path: 'Admin/User', loadChildren: () => import ('./admin-panel/users/user.module').then( m=> m.UserModule )},
   {path: 'Admin/Category', loadChildren: () => import ('./admin-panel/extra-product-info/category/category.module').then( m=> m.CategoryModule )},
   {path: 'Admin/Brand', loadChildren: () => import ('./admin-panel/extra-product-info/brand/brand.module').then( m=> m.BrandModule )},
+  {path: 'Admin/Mobile', loadChildren: () => import ('./admin-panel/product/mobile/mobile.module').then( m=> m.MobileModule )},
+  {path: 'Admin/AddMobile', loadChildren: () => import ('./admin-panel/product/mobile/add-mobile/add-mobile.module').then( m=> m.AddMobileModule )},
+
+
+
 
   // Without Lazy-Loading of Admin
   {path: 'Admin/Account', component:AccountComponent},

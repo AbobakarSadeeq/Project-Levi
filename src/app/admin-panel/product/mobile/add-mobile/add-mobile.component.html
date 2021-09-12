@@ -1,0 +1,183 @@
+<app-admin-header></app-admin-header>
+
+<div class="container">
+
+  <h1 style="font-size: 33px;">Add Mobile</h1>
+
+  <!-- Adding Mobile Form -->
+
+  <form [formGroup]="mobileFormData" >
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label for="inputEmail4">Mobile-Name</label>
+        <input formControlName="mobileName" type="text" class="form-control" placeholder="Mobile Name">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Processor</label>
+        <input formControlName="processor" type="text" class="form-control" placeholder="Processor">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Storage</label>
+        <input formControlName="storage" type="text" class="form-control" placeholder="Storage">
+      </div>
+    </div><br>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label for="inputEmail4">BatteryMah</label>
+        <input formControlName="batteryMah" type="text" class="form-control" placeholder="Battery Mah">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Ram</label>
+        <input formControlName="ram" type="text" class="form-control" placeholder="Ram">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Launch-Date</label>
+        <input formControlName="launchDate" type="date" class="form-control">
+      </div>
+    </div><br>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label for="inputEmail4">Mobile-Weight</label>
+        <input formControlName="mobileWeight" type="text" class="form-control" placeholder="Mobile Weight">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Screen-Size</label>
+        <input formControlName="screenSize" type="text" class="form-control" placeholder="Screen Size">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Charger</label>
+        <input formControlName="charger" type="text" class="form-control" placeholder="Charger">
+      </div>
+    </div><br>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label for="inputEmail4">Resolution</label>
+        <input formControlName="resolution" type="text" class="form-control" placeholder="Resolution">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">HeadPhone-Jack</label>
+        <input formControlName="headPhoneJack" type="text" class="form-control" placeholder="HeadPhone Jack">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Bluetooth</label>
+        <input formControlName="bluetooth" type="text" class="form-control" placeholder="Bluetooth">
+      </div>
+    </div><br>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label for="inputEmail4">USBConnector</label>
+        <input formControlName="uSBConnector" type="text" class="form-control" placeholder="USB Connector">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Wifi</label>
+        <input formControlName="wifi" type="text" class="form-control" placeholder="Wifi">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputEmail4">Mobile-Price</label>
+        <input formControlName="mobilePrice" type="number" class="form-control" placeholder="Mobile Price">
+      </div>
+    </div><br>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Quantity</label>
+        <input formControlName="quantity" type="number" class="form-control" placeholder="Quantity">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Brand</label>
+        <select formControlName="brand" class="form-select">
+          <option [value]="null" disabled>----------------------------Select-Brands--------------------------------
+          </option>
+          <option *ngFor="let a of brandsData" [value]="a.brand_Id">{{a.brandName}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Color</label>
+        <select formControlName="color" class="form-select">
+          <option [value]="null" disabled>----------------------------Select-Color--------------------------------
+          </option>
+          <option *ngFor="let a of colorsData" [value]="a.color_Id">{{a.colorName}}</option>
+        </select>
+      </div>
+    </div><br>
+
+    <div class="row">
+
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Operating Systems</label>
+        <select formControlName="operatingSystem" class="form-select" (change)="showingOperatingSystemVersion($event)">
+          <option value="null" disabled>------------------------Select-OperatingSystem--------------------------------
+          </option>
+          <option *ngFor="let a of OperatingSystemData" [value]="a.operatingSystem_Id">{{a.operatingName}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassword4">Operating Systems</label>
+        <select formControlName="operatingSystemVersion" class="form-select">
+          <option [value]="null" disabled>--------------------Select-OperatingSystemVersion-----------------------------
+          </option>
+          <option *ngFor="let a of OperatingSystemVersionDataFilterd" [value]="a.osV_Id">{{a.osvName}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputEmail4">Mobile-Networks</label><br><br>
+          <mat-checkbox *ngFor="let item of internetNetworks"
+          (change)="onChange(item.internetNetwork_Id)"  class="example-margin"
+          style="cursor: pointer;">
+          {{item.networkName}}&nbsp;&nbsp;&nbsp;</mat-checkbox>
+      </div><br>
+    </div><br>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label for="inputEmail4">Screen Type</label>
+        <input formControlName="screenType" type="text" class="form-control" placeholder="Screen Type">
+      </div>
+    </div><br>
+
+    <div class="row">
+      <div class="form-group col-md-4" formArrayName="frontCameras" *ngFor="let item of getFrontCamera()  let i=index">
+        <div [formGroupName]="i">
+          <label for="inputEmail4">Front-Camera</label>
+          <input formControlName="cameraDetail" type="text" class="form-control" placeholder="Front-Camera">
+        </div>
+      </div>&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <button (click)="AddFrontCamera()" class="btn btn-primary col-md-2"
+        style="cursor: pointer; margin-top: 20px; width: 245px;"><i class="fas fa-plus"></i> &nbsp; Add More Front
+        Cameras</button>
+    </div><br>
+    <div class="row">
+      <div class="form-group col-md-4" formArrayName="backCameras" *ngFor="let item of getbackCamera()  let j=index">
+        <div [formGroupName]="j">
+          <label for="inputEmail4">Back-Camera</label>
+          <input formControlName="cameraDetail" type="text" class="form-control" placeholder="Back-Camera">
+        </div>
+      </div>&nbsp;&nbsp;&nbsp;&nbsp;
+      <button (click)="AddbackCamera()" class="btn btn-primary col-md-2"
+        style="cursor: pointer; margin-top: 20px; width: 245px;"><i class="fas fa-plus"></i> &nbsp; Add More Back
+        Cameras</button>
+    </div><br>
+
+    <div class="row">
+      <div class="form-group col-md-4" formArrayName="Files" *ngFor="let item of getMobileImage()  let k=index">
+        <div [formGroupName]="k">
+          <label for="inputEmail4">Mobile-Images</label><br><br>
+          <input #MyFileInput (change)="fileChange($event)" type="file" formGroupName="File" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+      </div>&nbsp;&nbsp;&nbsp;&nbsp;
+      <button (click)="AddMobileImage()" class="btn btn-primary col-md-2"
+        style="cursor: pointer; margin-top: 30px; width: 245px;"><i class="fas fa-plus"></i> &nbsp; Add More Mobile
+        Images</button>
+    </div><br>
+
+    <br>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-plus" (click)="submitMobile()"> &nbsp; Insert Mobile</i></button>
+  </form>
+
+
+</div>

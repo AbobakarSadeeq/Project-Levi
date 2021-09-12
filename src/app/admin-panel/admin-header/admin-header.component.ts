@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
-
 @Component({
   selector: 'app-admin-header',
   templateUrl: './admin-header.component.html',
@@ -12,7 +11,6 @@ export class AdminHeaderComponent implements OnInit {
   showDropDown = {firstDropDown:false, secondDropDown:false};
 
   constructor() { }
-
   ngOnInit(): void {
   }
 
