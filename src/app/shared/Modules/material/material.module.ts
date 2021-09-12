@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 @NgModule({
   declarations: [],
   imports:[
@@ -18,7 +18,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ConfirmDialogModule
   ],
   exports: [
     MatCardModule,
@@ -28,7 +29,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ConfirmDialogModule
 
   ]
 })

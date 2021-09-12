@@ -21,7 +21,6 @@
         <input formControlName="storage" type="text" class="form-control" placeholder="Storage">
       </div>
     </div><br>
-
     <div class="row">
       <div class="form-group col-md-4">
         <label for="inputEmail4">BatteryMah</label>
@@ -88,19 +87,17 @@
         <input formControlName="quantity" type="number" class="form-control" placeholder="Quantity">
       </div>
       <div class="form-group col-md-4">
+        <label for="inputEmail4">Screen Type</label>
+        <input formControlName="screenType" type="text" class="form-control" placeholder="Screen Type">
+      </div>
+
+
+      <div class="form-group col-md-4">
         <label for="inputPassword4">Brand</label>
         <select formControlName="brand" class="form-select">
           <option [value]="null" disabled>----------------------------Select-Brands--------------------------------
           </option>
           <option *ngFor="let a of brandsData" [value]="a.brand_Id">{{a.brandName}}</option>
-        </select>
-      </div>
-      <div class="form-group col-md-4">
-        <label for="inputPassword4">Color</label>
-        <select formControlName="color" class="form-select">
-          <option [value]="null" disabled>----------------------------Select-Color--------------------------------
-          </option>
-          <option *ngFor="let a of colorsData" [value]="a.color_Id">{{a.colorName}}</option>
         </select>
       </div>
     </div><br>
@@ -124,20 +121,27 @@
         </select>
       </div>
       <div class="form-group col-md-4">
-        <label for="inputEmail4">Mobile-Networks</label><br><br>
-          <mat-checkbox *ngFor="let item of internetNetworks"
-          (change)="onChange(item.internetNetwork_Id)"  class="example-margin"
-          style="cursor: pointer;">
-          {{item.networkName}}&nbsp;&nbsp;&nbsp;</mat-checkbox>
-      </div><br>
+        <label for="inputPassword4">Color</label>
+        <select formControlName="color" class="form-select">
+          <option [value]="null" disabled>----------------------------Select-Color--------------------------------
+          </option>
+          <option *ngFor="let a of colorsData" [value]="a.color_Id">{{a.colorName}}</option>
+        </select>
+      </div>
+
     </div><br>
 
     <div class="row">
       <div class="form-group col-md-4">
-        <label for="inputEmail4">Screen Type</label>
-        <input formControlName="screenType" type="text" class="form-control" placeholder="Screen Type">
-      </div>
-    </div><br>
+
+      <label for="inputEmail4">Mobile-Networks</label><br>
+      <mat-checkbox *ngFor="let item of internetNetworks"
+      (change)="onChange(item.internetNetwork_Id)"  class="example-margin"
+      style="cursor: pointer;">
+      {{item.networkName}}&nbsp;&nbsp;&nbsp;</mat-checkbox>
+  </div>
+</div><br>
+<mat-spinner mode="indeterminate"  *ngIf="loadingIndicator" class="matSpinner"></mat-spinner>
 
     <div class="row">
       <div class="form-group col-md-4" formArrayName="frontCameras" *ngFor="let item of getFrontCamera()  let i=index">
@@ -181,3 +185,4 @@
 
 
 </div>
+

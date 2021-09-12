@@ -35,5 +35,18 @@ export class MobileService {
     return this.http.post("https://localhost:44344/api/Mobile",data);
   }
 
+  getAllMobile(): Observable<any>{
+    return this.http.get("https://localhost:44344/api/Mobile");
+  }
+
+  getSingleMobile(dataId:number){
+    return this.http.get("https://localhost:44344/api/Mobile/" + dataId);
+  }
+
+  DeleteSingleMobile(dataId:any){
+    return this.http.delete("https://localhost:44344/api/Mobile/" + dataId);
+  }
+
+
 
 }

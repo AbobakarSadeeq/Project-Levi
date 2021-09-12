@@ -8,7 +8,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { CalendarModule } from 'primeng/calendar';
 import { SliderModule } from 'primeng/slider';
 import {SidebarModule} from 'primeng/sidebar';
-
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import {SidebarModule} from 'primeng/sidebar';
     InputTextModule,
     OrderListModule,
     ButtonModule,
-    SidebarModule
+    SidebarModule,
+    TableModule
 
   ],
   exports: [
@@ -34,8 +35,8 @@ import {SidebarModule} from 'primeng/sidebar';
     InputTextModule,
     OrderListModule,
     ButtonModule,
-    SidebarModule
-
+    SidebarModule,
+    TableModule
 
 
   ]

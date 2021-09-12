@@ -5,7 +5,7 @@ import { SharedModule } from 'src/app/shared/Modules/shared.module';
 
 
 
-@NgModule({
+@NgModule({ 
   declarations: [AdminHeaderComponent],
   imports: [
     SharedModule,

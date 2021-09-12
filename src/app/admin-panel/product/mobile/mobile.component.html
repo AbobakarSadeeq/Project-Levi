@@ -1,8 +1,151 @@
 <app-admin-header></app-admin-header>
- 
+
+
+
 <div class="container">
   <div class="row">
     <button (click)="AddMobileNavigation()" class="btn btn-warning"><i class="fas fa-plus">Add Mobile</i></button>
+    <div class="card" style="margin-top: 10px;">
+      <p-table [value]="getMobiles" [paginator]="true" [rows]="8" [showCurrentPageReport]="true"
+        responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Mobile-Name</th>
+            <th>Brand-Name</th>
+            <th>Color</th>
+            <th>Storage</th>
+            <th>Sell Units</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Detail</th>
+            <th>Update Or Delete</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-mobile>
+          <tr>
+            <td>{{mobile?.mobileName}}</td>
+            <td>{{mobile?.brand?.brandName}}</td>
+            <td>{{mobile?.color?.colorName}}</td>
+            <td>{{mobile?.storage}}</td>
+            <td>{{mobile?.sellUnits}}</td>
+            <td>{{mobile?.quantity}}</td>
+            <td>{{mobile?.mobilePrice}}</td>
+            <td><button class="btn btn-outline-primary" (click)="showModalDialog(mobile?.mobile_Id)"
+                style="margin-top: 7px;">Details</button></td>
+            <td>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"></button>
+              &nbsp;
 
-</div></div>
+              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="openDeleteDialogConfarmation(mobile?.mobile_Id)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <!-- Extra template not worth to show its icons -->
+        <ng-template pTemplate="paginatorleft">
+          <p-button type="button" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+          <p-button type="button" styleClass="p-button-text"></p-button>
+        </ng-template>
+      </p-table>
+    </div>
 
+
+  </div>
+</div>
+
+
+
+<p-dialog  [(visible)]="displayModal" [dismissableMask]="true" [modal]="true"
+  [style]="{width: '80vw', height: '100vw'}" [draggable]="false" [resizable]="false">
+  <p-header><h1 style="text-align: center;">Mobile Detail</h1></p-header>
+
+
+  <div class="row">
+    <div class="col-sm-2">
+      <td><strong>MobileName</strong></td><br>
+      <td><strong>Processor</strong></td><br>
+      <td><strong>Storage</strong></td><br>
+      <td><strong>BatteryMah</strong></td><br>
+      <td><strong>Ram</strong></td><br>
+      <td><strong>LaunchDate</strong></td><br>
+      <td><strong>MobileWeight</strong></td><br>
+      <td><strong>ScreenSize</strong></td><br>
+      <td><strong>ScreenType</strong></td><br>
+      <td><strong>Charger</strong></td><br>
+      <td><strong>Resolution</strong></td><br>
+      <td><strong>HeadPhoneJack</strong></td><br>
+      <td><strong>Bluetooth</strong></td><br>
+      <td><strong>Wifi</strong></td><br>
+      <td><strong>BrandName</strong></td><br>
+      <td><strong>Color</strong></td><br>
+      <td><strong>OperatingSystem</strong></td><br>
+      <td><strong>OperatingSystemVersion</strong></td><br>
+  </div>
+
+    <div class="col-sm-2">
+      <td><span>{{singleMobileData?.mobileName}}</span></td><br>
+      <td><span>{{singleMobileData?.processor}}</span></td><br>
+       <td><span>{{singleMobileData?.storage}}</span></td><br>
+       <td><span>{{singleMobileData?.batteryMah}}</span></td><br>
+       <td><span>{{singleMobileData?.ram}}</span></td><br>
+       <td><span>{{singleMobileData?.launchDate | date}}</span></td><br>
+       <td><span>{{singleMobileData?.mobileWeight}}</span></td><br>
+       <td><span>{{singleMobileData?.screenSize}}</span></td><br>
+       <td><span>{{singleMobileData?.screenType}}</span></td><br>
+       <td><span>{{singleMobileData?.charger}}</span></td><br>
+       <td><span>{{singleMobileData?.resolution}}</span></td><br>
+       <td><span>{{singleMobileData?.headPhoneJack}}</span></td><br>
+       <td><span>{{singleMobileData?.bluetooth}}</span></td><br>
+       <td><span>{{singleMobileData?.wifi}}</span></td><br>
+       <td><span>{{singleMobileData?.brand?.brandName}}</span></td><br>
+       <td><span>{{singleMobileData?.color?.colorName}}</span></td><br>
+       <td><span>{{singleMobileData?.operatingSystemVersion?.operatingSystemss?.operatingName}}</span></td><br>
+       <td><span>{{singleMobileData?.operatingSystemVersion?.osvName}}</span></td>
+    </div>
+    <div class="col-sm-2">
+      <td><strong>Mobile Price</strong></td><br>
+      <td><strong>Sell Units</strong></td><br>
+      <td><strong>Stock Availiability</strong></td><br>
+      <td><strong>Quantity</strong></td><br>
+      <td><strong>NetworksMobiles</strong></td><br>
+      <td><strong>Mobile Front Cameras</strong></td><br>
+      <td><strong>Mobile Back Cameras</strong></td><br>
+  </div>
+  <div class="col-sm-2">
+    <td><span>{{singleMobileData?.mobilePrice}}</span></td><br>
+    <td><span>{{singleMobileData?.sellUnits}}</span></td><br>
+    <td><span>{{singleMobileData?.stockAvailiability}}</span></td><br>
+    <td><span>{{singleMobileData?.quantity}}</span></td><br>
+    <!-- <td *ngFor="let item of gettingInternetNetwork"><span>4g, 5g</span></td><br> -->
+    <td><span>4g, 5g</span></td><br>
+    <td *ngFor="let front of singleMobileData?.mobileFrontCameras"><span>{{front?.cameraDetail}},&nbsp;&nbsp;</span></td><br>
+    <td *ngFor="let back of singleMobileData?.mobileBackCameras"><span>{{back?.cameraDetail}},&nbsp;&nbsp;</span></td><br>
+
+</div>
+
+    <div class="col-sm-4">
+      <div class="img-thumbnail"
+      style="border: 1px solid red;width: 350px;height: 250px;">
+      <img id="mainimage" class="imageCorrection" src="{{singleMobileData?.mobileImagess[0]?.url}}">
+    </div><br>
+    <div class="row">
+      <img *ngFor="let img of singleMobileData?.mobileImagess" src="{{img?.url}}" style="height:70px; width: 100px;" alt="">
+    </div>
+    </div>
+  </div>
+
+</p-dialog>
+
+
+<mat-spinner mode="indeterminate"  *ngIf="myLoadingIndicator" class="matSpinner"></mat-spinner>
+
+
+
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <button type="button" pButton label="Cancel" (click)="cd?.reject()" class="btn btn-primary"></button>
+    <button type="button" class="btn btn-danger"  label="Ok" (click)="cd?.accept()">Remove</button>
+  </p-footer>
+</p-confirmDialog>

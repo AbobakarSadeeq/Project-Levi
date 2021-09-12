@@ -1,5 +1,7 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MobileService } from '../mobile.service';
 
@@ -20,9 +22,10 @@ export class AddMobileComponent implements OnInit {
   OperatingSystemVersionData: any[] = [];
   OperatingSystemVersionDataFilterd: any[] = [];
   gettingMobileNetworksData: any[] = [];
+  loadingIndicator = false;
 
 
-  constructor(private fb: FormBuilder, private _MobileService: MobileService) { }
+  constructor(private fb: FormBuilder, private _MobileService: MobileService, private _route:Router) { }
 
   ngOnInit(): void {
 
@@ -121,6 +124,7 @@ export class AddMobileComponent implements OnInit {
   @ViewChild('MyFileInput') MyFileInput: ElementRef;
   submitMobile() {
     debugger;
+    this.loadingIndicator = true;
     const formFrom = new FormData();
     formFrom.append("mobileName", this.mobileFormData.value['mobileName']);
     formFrom.append("processor", this.mobileFormData.value['processor']);
@@ -164,12 +168,14 @@ export class AddMobileComponent implements OnInit {
 
 
     this.subscription = this._MobileService.InsertMobile(formFrom).subscribe((data: any) => {
-      console.log("Done!");
+      this.loadingIndicator = false;
+      this._route.navigate(["Admin/Mobile"]);
     });
 
 
 
   }
+
 
   // Dynamic Form Data
   AddFrontCamera() {
