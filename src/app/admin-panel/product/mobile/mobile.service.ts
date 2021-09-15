@@ -47,6 +47,13 @@ export class MobileService {
     return this.http.delete("https://localhost:44344/api/Mobile/" + dataId);
   }
 
+  DeleteSingleMobileImage(dataId:any){
+    return this.http.delete("https://localhost:44344/api/Mobile/DeletingSingleMobileImage/" + dataId);
+  }
+
+  updateMobile(data:any){
+    return this.http.put("https://localhost:44344/api/Mobile",data)
+  }
 
 
 }

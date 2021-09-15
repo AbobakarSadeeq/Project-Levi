@@ -52,6 +52,7 @@ export class AddMobileComponent implements OnInit {
       color: [null],
       operatingSystem: [null],
       operatingSystemVersion: [null],
+      stockAvailiability:[''],
       backCameras: this.fb.array([this.fb.group({ cameraDetail: [''] })]),
       //  mobileNetworks: [''],
       frontCameras: this.fb.array([this.fb.group({ cameraDetail: [''] })]),
@@ -105,7 +106,6 @@ export class AddMobileComponent implements OnInit {
   showingOperatingSystemVersion(event: Event) {
     var Id = (event.target as HTMLInputElement).value;
     this.OperatingSystemVersionDataFilterd = this.OperatingSystemVersionData.filter(a => a.operatingSystemId == Id);
-    console.log(this.OperatingSystemVersionDataFilterd);
   }
 
 
@@ -118,6 +118,11 @@ export class AddMobileComponent implements OnInit {
   onChange(data: any) {
     let insertIntoObject = { internetNetworkId: data };
     this.gettingMobileNetworksData.push(insertIntoObject);
+  }
+
+  stockavailibityData:any = false;
+  stockAvailiabilityData(){
+    this.stockavailibityData = true;
   }
 
 
@@ -146,6 +151,7 @@ export class AddMobileComponent implements OnInit {
     formFrom.append("brandId", this.mobileFormData.value['brand']);
     formFrom.append("colorId", this.mobileFormData.value['color']);
     formFrom.append("oSVersionId", this.mobileFormData.value['operatingSystemVersion'])
+    formFrom.append("stockAvailiability", this.stockavailibityData);
 
     for (let i = 0; i < this.gettingMobileNetworksData.length; i++) {
       formFrom.append(`mobileNetworks[${i.toString()}].internetNetworkId`, this.gettingMobileNetworksData[i].internetNetworkId);

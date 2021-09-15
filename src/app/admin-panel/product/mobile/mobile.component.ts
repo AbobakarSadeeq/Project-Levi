@@ -15,12 +15,10 @@ export class MobileComponent implements OnInit {
   displayModal = false;
   myLoadingIndicator = false;
 
-
-
-
   getMobiles: any[] = [];
   gettingInternetNetwork: any[] = [];
   singleMobileData: any;
+
   constructor(private route: Router, private _MobileService: MobileService, private DialogService: ConfirmationService) { }
 
   ngOnInit(): void {
@@ -41,21 +39,22 @@ export class MobileComponent implements OnInit {
     });
   }
 
-
-
-
   // Showing Mobile Details Dialog;
 
-  getInternetNetworks(dataId: any) {
+  getInternetNetworks(mobileNetworksData: any[]) {
+    this.gettingInternetNetwork.splice(0,this.gettingInternetNetwork.length);
     this._MobileService.getInternetNetwork().subscribe((data: any[]) => {
-      console.log(data)
-      for (var networkId of dataId) {
-        this.gettingInternetNetwork.push(data.filter(a => a.internetNetwork_Id == networkId.internetNetworkId));
-      }
+      debugger;
+        for (var mobileNetworks in mobileNetworksData) {
+          for (var networks in data) {
+            if (mobileNetworksData[mobileNetworks].internetNetworkId == data[networks].internetNetwork_Id) {
+              this.gettingInternetNetwork.push(data[networks]);
+              break;
+            }
+          }
+        }
     })
-
   }
-
 
   showModalDialog(Id: any) {
     this.displayModal = true;
@@ -70,7 +69,7 @@ export class MobileComponent implements OnInit {
     this.DialogService.confirm({
       message: 'Are you sure you want to Delete Mobile?',
       accept: () => {
-       this.myLoadingIndicator = true;
+        this.myLoadingIndicator = true;
         this._MobileService.DeleteSingleMobile(dataId).subscribe(() => {
           this.getAllMobiles();
           this.myLoadingIndicator = false;
@@ -78,8 +77,6 @@ export class MobileComponent implements OnInit {
       }
     });
   }
-
-
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.

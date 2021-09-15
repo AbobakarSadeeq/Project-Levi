@@ -6,7 +6,7 @@ import { MobileComponent } from './mobile.component';
 import { SharedModule } from 'src/app/shared/Modules/shared.module';
 import { AdminHeaderModule } from '../../admin-header/admin-header.module';
 import { ConfirmationService } from 'primeng/api';
-
+import { DatePipe } from '@angular/common'
 
 @NgModule({
   declarations: [MobileComponent],
@@ -16,6 +16,6 @@ import { ConfirmationService } from 'primeng/api';
     SharedModule,
     AdminHeaderModule
   ],
-  providers:[ConfirmationService]
+  providers:[ConfirmationService, DatePipe]
 })
 export class MobileModule { }

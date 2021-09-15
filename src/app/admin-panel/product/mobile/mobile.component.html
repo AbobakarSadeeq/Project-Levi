@@ -34,7 +34,7 @@
             <td><button class="btn btn-outline-primary" (click)="showModalDialog(mobile?.mobile_Id)"
                 style="margin-top: 7px;">Details</button></td>
             <td>
-              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"></button>
+              <a [routerLink]="['/Admin/UpdateMobile', mobile?.mobile_Id]" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"></a>
               &nbsp;
 
               <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="openDeleteDialogConfarmation(mobile?.mobile_Id)"></button>
@@ -118,8 +118,8 @@
     <td><span>{{singleMobileData?.sellUnits}}</span></td><br>
     <td><span>{{singleMobileData?.stockAvailiability}}</span></td><br>
     <td><span>{{singleMobileData?.quantity}}</span></td><br>
-    <!-- <td *ngFor="let item of gettingInternetNetwork"><span>4g, 5g</span></td><br> -->
-    <td><span>4g, 5g</span></td><br>
+    <!-- <td ><span>4g, 5g</span></td><br> -->
+    <td *ngFor="let networks of gettingInternetNetwork"><span>{{networks?.networkName}},&nbsp;&nbsp;</span></td><br>
     <td *ngFor="let front of singleMobileData?.mobileFrontCameras"><span>{{front?.cameraDetail}},&nbsp;&nbsp;</span></td><br>
     <td *ngFor="let back of singleMobileData?.mobileBackCameras"><span>{{back?.cameraDetail}},&nbsp;&nbsp;</span></td><br>
 
@@ -135,9 +135,7 @@
     </div>
     </div>
   </div>
-
 </p-dialog>
-
 
 <mat-spinner mode="indeterminate"  *ngIf="myLoadingIndicator" class="matSpinner"></mat-spinner>
 
