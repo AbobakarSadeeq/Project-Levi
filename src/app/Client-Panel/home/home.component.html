@@ -1,0 +1,43 @@
+<app-header-sidebar></app-header-sidebar>
+
+<div class="row">
+  <div class="col-2-offset"></div>
+
+<!-- Carousel -->
+  <ngb-carousel style="margin-top: -23px;" *ngIf="CarouselAllData">
+    <ng-template ngbSlide *ngFor="let item of CarouselAllData" >
+      <div class="picsum-img-wrapper" >
+        <img [src]="item?.url" alt="Random first slide" width="1530" height="570">
+      </div>
+      <div class="carousel-caption">
+        <h3>{{item?.imageTitle}}</h3>
+        <p>{{item?.imageDescription}}</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+
+
+  <!-- other Section -->
+
+<div class="col-10"><br>
+ <div class="row">
+  <div>
+    <h1>Most Selled Mobiles</h1>
+    <div class="container">
+      <div class="row">
+                  <div class="col-lg-2" *ngFor="let maxSellOut of MaxSellOutMobiles">
+                      <a style=" font-family: Gotham Medium; font-size: 15px; color: #282828; text-decoration: none;" [routerLink]="['Mobile/Detail/', maxSellOut?.mobile_Id]">
+
+                              <img src="{{maxSellOut?.mobileImagess[0].url}}" class="card-img-top" alt="adv" style=" width: 162px; height: 160px;" />
+                          <span style="font-family: Gotham Medium; font-size: 14px; "><b>{{maxSellOut?.mobileName}}</b> </span> <span style="font-family: Gotham Medium; font-size: 14px; "><b> &nbsp;({{maxSellOut?.ram}}, {{maxSellOut?.storage}})</b></span>
+                          <p style="color:#1c1018; font-family: Gotham Medium; font-size: 18px; "><b>{{maxSellOut?.mobilePrice | currency: 'Rs ': 'symbol':'1.0'}}</b></p>
+                      </a>
+                  </div>
+
+      </div>
+  </div>
+  </div>
+ </div>
+</div>
+</div>
+

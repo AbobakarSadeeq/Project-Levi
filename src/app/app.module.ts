@@ -5,10 +5,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/Modules/shared.module';
 import { AccountModule } from './admin-panel/account/account.module';
-
 @NgModule({
   declarations: [
     AppComponent,
+
 
   ],
   imports: [
@@ -17,10 +17,10 @@ import { AccountModule } from './admin-panel/account/account.module';
     NoopAnimationsModule,
     SharedModule,
     AccountModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
 
   ],
   providers: [],
   bootstrap: [AppComponent]
-}) 
+})
 export class AppModule { }

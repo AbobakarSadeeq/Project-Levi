@@ -57,7 +57,58 @@ background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
 
 .fab:hover, .fa:hover, .fas:hover, .far:hover{
-  background-color: #397cd3;
   border-radius: 10px;
 }
 
+aside  .first-box{
+  height: 200px;
+  max-width: 250px;
+  position: relative;
+  background-color: #5cb85c;
+  border-radius: 10px;
+  margin-top:15px ;
+  margin-left: 20px;
+
+}
+aside span{
+  position: absolute;
+  margin: 20px;
+  margin-right: 15px;
+  background-color: #ffe77aff;
+  padding: 10px;
+  width: 200px;
+  border-radius: 10px;
+}
+aside .first-box-items{
+  position: absolute;
+  padding: 10px;
+  margin:30px 10px 0px 20px;
+}
+.first-box-items li{
+  list-style: none;
+  padding: 5px;
+}
+.first-box-items li a{
+  text-decoration: none;
+}
+.first-box-items li a:hover{
+  background-color: bisque;
+}
+aside .second-box{
+  height: 150px;
+  width: 250px;
+  position: relative;
+  background-color: #5cb85c;
+  border-radius: 10px;
+  margin-left: 20px;
+
+}
+aside .third-box{
+  height: 180px;
+  width: 250px;
+  position: relative;
+  background-color: #5cb85c;
+  border-radius: 10px;
+  margin-left: 20px;
+
+}

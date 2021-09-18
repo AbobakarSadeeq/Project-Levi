@@ -7,18 +7,20 @@ import { PrimengModule } from './primeng/primeng.module';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminHeaderComponent } from 'src/app/admin-panel/admin-header/admin-header.component';
 import { AdminHeaderModule } from 'src/app/admin-panel/admin-header/admin-header.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
 
 
   imports: [
-    
+    NgbModule
   ],
   exports: [
     PrimengModule,
     MaterialModule,
-    BasicModule
+    BasicModule,
+    NgbModule
   ]
 })
 export class SharedModule { }

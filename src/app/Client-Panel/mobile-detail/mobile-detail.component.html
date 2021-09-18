@@ -1,0 +1,183 @@
+<app-header-sidebar></app-header-sidebar>
+
+
+
+
+  <!-- Carousel Column -->
+  <div class="row">
+   <div class="col-lg-3">
+
+
+
+    <ngb-carousel style="margin-top: -23px;" *ngIf="mobileDetailData">
+      <ng-template ngbSlide *ngFor="let item of mobileDetailData?.mobileImagess" >
+        <div class="picsum-img-wrapper" >
+          <img [src]="item?.url" alt="Random first slide" width="350px" class="d-block " height="400px">
+        </div>
+        <div class="carousel-caption">
+          <h3>{{item?.imageTitle}}</h3>
+          <p>{{item?.imageDescription}}</p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+
+
+   </div>
+   <div class="col-lg-9 ">
+    <br><br>
+    <p style="color: #282828; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;">
+     {{mobileDetailData?.brand?.brandName}} {{mobileDetailData?.mobileName}} ({{mobileDetailData?.storage}} {{mobileDetailData?.color?.colorName}})</p>
+    <span style="color: grey; font-size: 12px;">Product Id ____{{mobileDetailData?.mobile_Id}}____</span>
+    <br><br>
+    <h4><strong style="font-size: 24px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">{{mobileDetailData?.mobilePrice | currency: 'Rs ': 'symbol':'1.0'}}</strong></h4>
+    <!--More Mobile Details -->
+    <ul style="list-style: none; padding-left: 0%;">
+     <li style="display: inline-block;">
+      <div>
+       <span style="color: grey; font-size: 14px;">Condition</span>
+       <h6 style="font-size: 15px;">New</h6>
+      </div>
+     </li>
+     <li style="display: inline-block; padding-left: 15px;">
+      <div>
+       <span style="color: grey; font-size: 15px;">Delivery</span>
+       <h6 style="font-size: 14px;">4 - 7 Working Days</h6>
+      </div>
+     <li style="display: inline-block; padding-left: 15px;">
+      <div>
+       <span style="color: grey; font-size: 15px;">Availability</span>
+       <h6 style="font-size: 14px;">{{mobileDetailData?.stockAvailiability== true? 'In Stock': 'Not Available'}}</h6>
+      </div>
+     </li>
+     <li style="display: inline-block; padding-left: 15px;">
+      <div>
+       <span style="color: grey; font-size: 15px;">Product Id</span>
+       <h6 style="font-size: 14px;">____{{mobileDetailData?.mobile_Id}}____</h6>
+      </div>
+     </li><br>
+      <li style="display: inline-block; padding-left: 0px;">
+      <div>
+       <span style="color: grey; font-size: 12px;">Quantity of Product</span>
+       <div style="margin-top: 4px; margin-bottom: 16px;">
+        <button class="btn"  (click)="subtractingProductQuantity()" [disabled]="addQuantity==1" >-</button>&nbsp;
+        <span>{{addQuantity}}</span> &nbsp;
+        <button class="btn" (click)="addingProductQuantity()" [disabled]="addQuantity == 5"  >+</button>
+       </div>
+      </div>
+     </li>
+    </ul>
+    <!-- Not necessary-Part -->
+    <img src="../../../assets//Pictures/12.PNG" alt="">
+    <br><br><br>
+    <div>
+    <!-- Add to Cart & Buy Button -->
+    <button type="button" class="btn btn-outline-info "
+     style="border-radius: 15%; width: 200px; height: 45px;margin-right: 15px;">Add to Cart</button>
+
+     <!-- Cart-View -->
+    <button type="button" class="btn btn-primary " style="  border-radius: 15%; width: 200px; height: 45px;" id="addData" data-toggle="modal"
+    data-target="#exampleModal">Buy
+     Now</button>
+    </div>
+  </div>
+    </div>
+
+
+    <!-- Product Specification -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col offset-2"></div>
+        <div class="col-10">
+          <br><br><br><br>
+<h1 style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;" ><b>Mobile Specification</b></h1>
+<br><br>
+
+<div class="Mobile-Body">
+  <h4 style="font-size: 18px;"><b>Body</b></h4><br>
+  <p>Weight<span style="color: grey; padding-left: 15px;" class="C# Helper-Tags">{{mobileDetailData?.mobileWeight}}</span></p>
+  <p>Launch Date<span style="color: grey; padding-left: 15px;" class="C# Helper-Tag s">{{mobileDetailData?.launchDate | date}}</span></p>
+
+ </div><br><br><hr>
+ <!-- Mobile-Display specs -->
+ <div class="Mobile-Display">
+  <h4 style="font-size: 18px;"><b>Display</b></h4><br>
+  <p>Screen Size <span style="color: grey; padding-left: 15px;" class="C# Helper-Tags">{{mobileDetailData?.screenSize}}</span></p>
+  <p>Screen Type <span style="color: grey; padding-left: 15px;" class="C# Helper-Tags">{{mobileDetailData?.screenType}}</span></p>
+  <p>Screen Resolution <span style="color: grey; padding-left: 15px;" class="C# Helper-Tags">{{mobileDetailData?.resolution}}</span></p>
+
+ </div><br><hr>
+ <!-- Operating-System -->
+ <div class="Operating-System">
+  <h4 style="font-size: 18px;"><b>Operating-System</b></h4><br>
+  <p >Operating System <span style="color: grey; padding-left: 15px;" class="C# Helper-Tags">{{mobileDetailData?.operatingSystemVersion?.operatingSystemss?.operatingName}}</span></p>
+  <p >OS Version <span style="color: grey; padding-left: 15px;" class="C# Helper-Tags">{{mobileDetailData?.operatingSystemVersion?.osvName}}</span></p>
+
+ </div><br><hr>
+
+ <!-- Mobile-Storage -->
+ <div class="Mobile-Storage">
+  <h4 style="font-size: 18px;"><b>Mobile-Storage</b></h4><br>
+  <p >Internal-Storage <span style="color: grey; padding-left: 15px;" class="C# Helper-Tags all data will be writen in database in one box">{{mobileDetailData?.storage}}</span></p>
+ </div><br><hr>
+
+   <!-- Main-Camera -->
+   <div class="Main-Camera">
+    <h4 style="font-size: 18px;"><b>Main-Cameras</b></h4><br>
+      <span><strong style="color: black; font-size: 13px;"> Back Cameras:</strong> </span>
+    <span *ngFor="let item of mobileDetailData?.mobileBackCameras" style="color: grey; padding-left: 5px;">
+    {{item?.cameraDetail}}<b style="font-size: 15px;">,</b><br></span>
+   </div><br><hr>
+
+       <!-- Front-Camera -->
+       <div class="Main-Camera">
+        <h4 style="font-size: 18px;"><b>Front-Cameras</b></h4><br>
+          <span><strong style="color: black; font-size: 13px;"> Front Cameras:</strong> </span>
+        <span *ngFor="let item of mobileDetailData?.mobileFrontCameras" style="color: grey; padding-left: 5px;">
+        {{item?.cameraDetail}}<b style="font-size: 15px;">,</b><br></span>
+       </div><br><hr>
+
+         <!-- Front-Camera -->
+         <!-- YOu can also make anchor tag like text -->
+
+
+         <div class="processorAndRam">
+          <h4 style="font-size: 18px;"><b>Processor & Ram</b></h4><br>
+          <p>Processor <span style="color: grey; padding-left: 15px;"  class="C# Helper-Tags all data will be writen in database in one box">  {{mobileDetailData?.processor}}
+          </span></p>
+          <p>Ram <span style="color: grey; padding-left: 15px;"  class="C# Helper-Tags all data will be writen in database in one box"> {{mobileDetailData?.ram}}
+          </span></p>
+         </div><br><hr>
+
+           <!--Mobile-Battery-->
+       <div class="Mobile-Battery">
+        <h4 style="font-size: 18px;"><b>Mobile-Battery</b></h4><br>
+        <p>Battery <span style="color: grey; padding-left: 15px;"  class="C# Helper-Tags all data will be writen in database in one box">  {{mobileDetailData?.batteryMah}}
+        </span></p>
+        <p>Charger <span style="color: grey; padding-left: 15px;"  class="C# Helper-Tags all data will be writen in database in one box"> {{mobileDetailData?.charger}}
+        </span></p>
+       </div><br><hr>
+
+       <div >
+        <h4 style="font-size: 18px;"><b>Mobile-Connectivity</b></h4><br>
+        <p>headphone jack <span style="color: grey; padding-left: 15px;"  class="C# Helper-Tags all data will be writen in database in one box">  {{mobileDetailData?.headPhoneJack}}
+        </span></p>
+        <p>Wifi <span style="color: grey; padding-left: 15px;"  class="C# Helper-Tags all data will be writen in database in one box"> {{mobileDetailData?.wifi}}
+        </span></p>
+        <p>Bluetooth <span style="color: grey; padding-left: 15px;"  class="C# Helper-Tags all data will be writen in database in one box"> {{mobileDetailData?.bluetooth}}
+        </span></p>
+        <p>USB Connector <span style="color: grey; padding-left: 15px;"  class="C# Helper-Tags all data will be writen in database in one box"> {{mobileDetailData?.usbConnector}}
+        </span></p>
+       </div><br><hr>
+
+       <div  >
+        <h4 style="font-size: 18px;"><b>Networks</b></h4><br>
+        <p>Internet Networks <span style="color: grey; padding-left: 15px;" *ngFor="let item of gettingInternetNetwork">{{item?.networkName}},
+        </span></p>
+       </div><br><hr>
+
+
+
+        </div>
+      </div>
+    </div>

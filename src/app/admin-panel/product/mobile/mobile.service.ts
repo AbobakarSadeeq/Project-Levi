@@ -55,5 +55,10 @@ export class MobileService {
     return this.http.put("https://localhost:44344/api/Mobile",data)
   }
 
+  // Client API's
+  GetMaxSellOut(){
+    return this.http.get("https://localhost:44344/api/Mobile/GetMaxSellOutMobiles");
+  }
+
 
 }

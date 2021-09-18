@@ -7,7 +7,8 @@ const routes: Routes = [
 
   // All Client Side Paths
   // localHost:4200/AnotherModule
-  {path: '', loadChildren: () => import ('../app/home/home.module').then( m=> m.HomeModule )},
+  {path: '', loadChildren: () => import ('./Client-Panel/home/home.module').then( m=> m.HomeModule )},
+  {path: 'Mobile/Detail/:id', loadChildren: () => import ('../app/Client-Panel/mobile-detail/mobile-detail.module').then( m=> m.MobileDetailModule )},
 
 
   // All Admin Side Paths
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'Admin/Mobile', loadChildren: () => import ('./admin-panel/product/mobile/mobile.module').then( m=> m.MobileModule )},
   {path: 'Admin/AddMobile', loadChildren: () => import ('./admin-panel/product/mobile/add-mobile/add-mobile.module').then( m=> m.AddMobileModule )},
   {path: 'Admin/UpdateMobile/:id', loadChildren: () => import ('./admin-panel/product/mobile/update-mobile/update-mobile.module').then( m=> m.UpdateMobileModule )},
+  {path: 'Admin/Carousel', loadChildren: () => import ('./admin-panel/extra-product-info/carousel/carousel.module').then( m=> m.CarouselModule )},
 
 
 
