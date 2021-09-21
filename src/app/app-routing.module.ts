@@ -8,10 +8,11 @@ const routes: Routes = [
   // All Client Side Paths
   // localHost:4200/AnotherModule
   {path: '', loadChildren: () => import ('./Client-Panel/home/home.module').then( m=> m.HomeModule )},
-  {path: 'Mobile/Detail/:id', loadChildren: () => import ('../app/Client-Panel/mobile-detail/mobile-detail.module').then( m=> m.MobileDetailModule )},
+  {path: 'Mobile/Detail/:id', loadChildren: () => import ('./Client-Panel/client-mobile/mobile-detail/mobile-detail.module').then( m=> m.MobileDetailModule )},
+  {path: 'Mobile/:multiData', loadChildren: () => import ('./Client-Panel/client-mobile/client-module.module').then( m=> m.ClientModuleModule )},
 
 
-  // All Admin Side Paths
+  // All Admin Side Paths 
   // localHost:4200/Admin/AnotherModule
   {path: 'Admin/Dashboard', loadChildren: () => import ('../app/admin-panel/admin.module').then( m=> m.AdminModule )},
   {path: 'Admin/User', loadChildren: () => import ('./admin-panel/users/user.module').then( m=> m.UserModule )},

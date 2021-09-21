@@ -44,27 +44,24 @@
     <div class="first-box">
         <span>Brands</span><br>
         <ul class="first-box-items">
-            <li><a href="#">Apple</a></li>
-            <li><a href="#">Samsung</a></li>
-            <li><a href="#">One-Plus</a></li>
-            <li><a href="#">Vivo</a></li>
+            <li *ngFor="let item of brand"><a [routerLink]="['/Mobile',item?.brand_Id]" >{{item?.brandName}}</a></li>
         </ul>
     </div>
     <br>
     <div class="second-box">
-        <span>Operating System</span><br>
+        <span>Operating Systems</span><br>
         <ul class="first-box-items">
-            <li><a href="#">IOS</a></li>
-            <li><a href="#">Andriod</a></li>
+          <li *ngFor="let item of operatingSystem"><a [routerLink]="['/Mobile',item?.operatingSystem_Id]" [queryParams]="{changeData:'OS'}">{{item?.operatingName}}</a></li>
+
         </ul>
     </div>
     <br>
     <div class="third-box">
         <span>Screen-Sizes</span><br>
         <ul class="first-box-items">
-            <li><a href="#">5.0</a></li>
-            <li><a href="#">6.0</a></li>
-            <li><a href="#">6.8</a></li>
+            <li><a [routerLink]="['/Mobile','5.5']" [queryParams]="{mobileSize:'ScreenSizes'}">5.5</a></li>
+            <li><a [routerLink]="['/Mobile','6.0']" [queryParams]="{mobileSize:'ScreenSizes'}">6.0</a></li>
+            <li><a [routerLink]="['/Mobile','6.8']" [queryParams]="{mobileSize:'ScreenSizes'}">6.8</a></li>
         </ul>
     </div>
   </aside>

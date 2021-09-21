@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MobileDetailRoutingModule } from './mobile-detail-routing.module';
-import { MobileDetailComponent } from './mobile-detail.component';
+import { ClientModuleRoutingModule } from './client-module-routing.module';
+import { ClientMobileComponent } from './client-mobile.component';
 import { SharedModule } from 'src/app/shared/Modules/shared.module';
 import { HeaderSidebarModule } from '../header-sidebar/header-sidebar.module';
 
 
 @NgModule({
-  declarations: [MobileDetailComponent],
+  declarations: [ClientMobileComponent],
   imports: [
     CommonModule,
-    MobileDetailRoutingModule,
+    ClientModuleRoutingModule,
     SharedModule,
-    HeaderSidebarModule,
+    HeaderSidebarModule
   ]
 })
-export class MobileDetailModule { }
+export class ClientModuleModule { }

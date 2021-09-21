@@ -7,9 +7,11 @@ import { SharedModule } from './shared/Modules/shared.module';
 import { AccountModule } from './admin-panel/account/account.module';
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
+     
+    
 
-
+ 
   ],
   imports: [
     BrowserModule,

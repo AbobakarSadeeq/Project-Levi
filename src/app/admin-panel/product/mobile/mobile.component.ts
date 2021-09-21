@@ -10,7 +10,7 @@ import { MobileService } from './mobile.service';
   templateUrl: './mobile.component.html',
   styleUrls: ['./mobile.component.css']
 })
-export class MobileComponent implements OnInit {
+export class MobileComponent implements OnInit { 
   subscription: Subscription;
   displayModal = false;
   myLoadingIndicator = false;

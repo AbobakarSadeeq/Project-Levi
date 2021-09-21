@@ -26,12 +26,18 @@
    <div class="col-lg-9 ">
     <br><br>
     <p style="color: #282828; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px;">
-     {{mobileDetailData?.brand?.brandName}} {{mobileDetailData?.mobileName}} ({{mobileDetailData?.storage}} {{mobileDetailData?.color?.colorName}})</p>
+      {{mobileDetailData?.mobileName}} ({{mobileDetailData?.storage}} {{mobileDetailData?.color?.colorName}})</p>
     <span style="color: grey; font-size: 12px;">Product Id ____{{mobileDetailData?.mobile_Id}}____</span>
     <br><br>
     <h4><strong style="font-size: 24px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">{{mobileDetailData?.mobilePrice | currency: 'Rs ': 'symbol':'1.0'}}</strong></h4>
     <!--More Mobile Details -->
     <ul style="list-style: none; padding-left: 0%;">
+     <li style="display: inline-block;">
+      <div>
+       <span style="color: grey; font-size: 14px;">Brand Name</span>
+       <h6 style="font-size: 15px;">{{mobileDetailData?.brand?.brandName}}</h6>
+      </div>
+     </li> &nbsp;
      <li style="display: inline-block;">
       <div>
        <span style="color: grey; font-size: 14px;">Condition</span>

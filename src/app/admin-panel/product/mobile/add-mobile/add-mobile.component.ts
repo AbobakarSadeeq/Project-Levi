@@ -116,9 +116,18 @@ export class AddMobileComponent implements OnInit {
   }
 
   onChange(data: any) {
+    debugger;
     let insertIntoObject = { internetNetworkId: data };
-    this.gettingMobileNetworksData.push(insertIntoObject);
-  }
+     if(this.gettingMobileNetworksData.filter(a=>a.internetNetworkId == data).length > 0){
+      var findingIndex =  this.gettingMobileNetworksData.findIndex(a=>a.internetNetworkId == data);
+      console.log(findingIndex);
+      this.gettingMobileNetworksData.splice(findingIndex,1)
+     }
+     else{
+      this.gettingMobileNetworksData.push(insertIntoObject);
+     }
+
+    }
 
   stockavailibityData:any = false;
   stockAvailiabilityData(){
