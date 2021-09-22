@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { MobileService } from './mobile.service';
 
 @Component({
@@ -10,20 +11,22 @@ import { MobileService } from './mobile.service';
   templateUrl: './mobile.component.html',
   styleUrls: ['./mobile.component.css']
 })
-export class MobileComponent implements OnInit { 
+export class MobileComponent implements OnInit {
   subscription: Subscription;
   displayModal = false;
   myLoadingIndicator = false;
-
+  showIndicator = false;
   getMobiles: any[] = [];
   gettingInternetNetwork: any[] = [];
   singleMobileData: any;
 
-  constructor(private route: Router, private _MobileService: MobileService, private DialogService: ConfirmationService) { }
+  constructor(private _authService:AuthService, private route: Router, private _MobileService: MobileService, private DialogService: ConfirmationService) { }
 
   ngOnInit(): void {
 
-
+    this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
+      this.showIndicator = data;
+    });
     this.getAllMobiles();
   }
 

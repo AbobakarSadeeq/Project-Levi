@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { MobileService } from '../../product/mobile/mobile.service';
 import { CarouselService } from './carousel.service';
 
@@ -12,7 +13,7 @@ import { CarouselService } from './carousel.service';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
-
+  showIndicator = false;
   CarouselAllData:any[] = [];
   subscription:Subscription;
   display: boolean = false;
@@ -21,7 +22,7 @@ export class CarouselComponent implements OnInit {
   CarouselFormData:FormGroup;
   showError: boolean = false;
 
-  constructor(private route: Router, private _CarouselService: CarouselService, private DialogService: ConfirmationService,private fb:FormBuilder) { }
+  constructor(private _AuthService:AuthService, private route: Router, private _CarouselService: CarouselService, private DialogService: ConfirmationService,private fb:FormBuilder) { }
 
   ngOnInit(): void {
     this.CarouselFormData = this.fb.group({
@@ -31,7 +32,9 @@ export class CarouselComponent implements OnInit {
       File: [''],
     });
 
-
+    this.subscription =  this._AuthService.loadingSpinnerLogOut.subscribe((data:any)=>{
+      this.showIndicator = data;
+    });
     this.getAllCarousel();
   }
 

@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { MobileService } from '../mobile.service';
 
 @Component({
@@ -13,7 +14,7 @@ import { MobileService } from '../mobile.service';
 export class AddMobileComponent implements OnInit {
   mobileFormData: FormGroup;
   subscription: Subscription;
-
+  showIndicator = false;
   // Getting Data for fullfill the form
   internetNetworks: any[] = [];
   brandsData: any[] = [];
@@ -25,10 +26,13 @@ export class AddMobileComponent implements OnInit {
   loadingIndicator = false;
 
 
-  constructor(private fb: FormBuilder, private _MobileService: MobileService, private _route:Router) { }
+  constructor(private _authService:AuthService, private fb: FormBuilder, private _MobileService: MobileService, private _route:Router) { }
 
   ngOnInit(): void {
-
+    
+    this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
+      this.showIndicator = data;
+    });
 
     this.mobileFormData = this.fb.group({
       mobileName: [''],

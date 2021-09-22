@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BrandRoutingModule } from './brand-routing.module';
 import { BrandComponent } from './brand.component';
 import { AdminHeaderModule } from '../../admin-header/admin-header.module';
+import { SharedModule } from 'src/app/shared/Modules/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { AdminHeaderModule } from '../../admin-header/admin-header.module';
   imports: [
     CommonModule,
     BrandRoutingModule,
-    AdminHeaderModule
+    AdminHeaderModule,
+    SharedModule
   ]
 })
 export class BrandModule { }

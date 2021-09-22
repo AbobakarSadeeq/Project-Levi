@@ -1,0 +1,65 @@
+<app-header-sidebar></app-header-sidebar>
+
+<br><br>
+
+<div class="row" >
+  <div class="col-xs-12 col-md-6 col-md-offset-3" style="margin-left:250px; margin-bottom: 0px; padding-bottom: 29px;" >
+    <h1 style="text-align: center; font-size: 50px;">{{isLoginMode ?"Log In":"Sign Up"}}</h1>
+    <!-- Error Message -->
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMessage">
+      {{errorMessage}}
+      <a (click)="removeErrorEvent()" style="cursor: pointer; float: right;">
+        <span aria-hidden="true">&times;</span>
+      </a>
+    </div>
+    <div class="alert alert-success alert-dismissible fade show" style="margin-bottom: 0px; padding-bottom: 29px;" role="alert" *ngIf="successFullInsert">
+      {{successFullInsert}}
+      <a (click)="removeErrorEvent()"  style="cursor: pointer; float: right;">
+        <span aria-hidden="true">&times;</span>
+      </a>
+    </div>
+    <form #authForm="ngForm" (ngSubmit)="authFormData(authForm)">
+      <div class="form-group" [hidden]="isLoginMode">
+        <label for="Name">UserName</label>
+        <input pattern="^[a-zA-Z0-9]+([a-zA-Z0-9][a-zA-Z0-9])*[a-zA-Z0-9]+$" required #val0="ngModel" type="text"
+          [disabled]="isLoginMode" ngModel id="name" class="form-control" name="UserName" required
+          placeholder="UserName" />
+         <span *ngIf="val0.invalid &&val0.touched" style="color:red;">UserName Cannot allow two underscores, two hypens
+          or any spaces an underscore</span>
+
+      </div>
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input required #val1="ngModel" type="email" ngModel id="email" class="form-control" name="Email" required
+          placeholder="Email" />
+         <span *ngIf="val1.invalid &&val1.touched" style="color:red;">Email is Required</span>
+
+      </div>
+      <div class="form-group">
+        <label for="password">Password </label>
+        <input required #val2="ngModel" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,15}$" type="password"
+          ngModel id="password" name="Password" required placeholder="Password" minlength="6" class="form-control" />
+         <span *ngIf="val2.invalid &&val2.touched" style="color:red;">{{isLoginMode ? "Please Enter your Password": "(Password must have at least 8 characters,1 Uppercase, 1 lower case and 1 Number)" }}</span>
+
+      </div>
+      <div class="form-group" [hidden]="isLoginMode">
+        <label for="password">Confirm-Password</label>
+        <input #val3="ngModel" type="password" [disabled]="isLoginMode" ngModel id="Confirm-Password"
+          name="ConfirmPassword" required placeholder="ConfirmPassword" class="form-control" />
+         <span *ngIf=" val3.value !==val2.value" style="color:red;">Password Required To Confirm</span>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary" *ngIf="!isLoginMode"
+          [disabled]="authForm.invalid || val3.value != val2.value ">Sign Up</button>
+        <button type="submit" class="btn btn-primary" *ngIf="isLoginMode" [disabled]="authForm.invalid ">Log In</button>
+        |
+        <button class="btn btn-primary" type="button"
+          (click)="onSwitchMode(authForm)">{{isLoginMode ? "Switch to Sign Up": "Switch to Login"}}</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<mat-spinner class="matSpinner" *ngIf="loadingIndicator"></mat-spinner>
+

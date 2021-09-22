@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { MobileService } from '../mobile.service';
 
 @Component({
@@ -30,11 +31,14 @@ export class UpdateMobileComponent implements OnInit {
   oldNetworkMobile: any[] = [];
   updateNetworkMobile: any[] = [];
   deletedImage = false;
-
-  constructor(private DialogService: ConfirmationService, public datepipe: DatePipe, private fb: FormBuilder, private _route: Router, private _activateRoute: ActivatedRoute, private _mobileService: MobileService) { }
+  showIndicator = false;
+  constructor(private _authService:AuthService, private DialogService: ConfirmationService, public datepipe: DatePipe, private fb: FormBuilder, private _route: Router, private _activateRoute: ActivatedRoute, private _mobileService: MobileService) { }
 
   ngOnInit(): void {
 
+    this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
+      this.showIndicator = data;
+    });
     this.mobileFormData = this.fb.group({
       mobile_Id: [''],
       mobileName: [''],

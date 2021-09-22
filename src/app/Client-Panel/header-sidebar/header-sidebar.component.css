@@ -112,3 +112,47 @@ aside .third-box{
   margin-left: 20px;
 
 }
+
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+#lblCartCount {
+    font-size: 12px;
+    background: orange;
+    color: rgb(18, 49, 226);
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -10px;
+}
+
+#dropdown-link-hover-color {
+  color: green;
+}
+
+.dropdown-menu > li > a:hover {
+  background-color: #0275d8;
+}
+
+.bg-custom-1 {
+  background-color: #85144b;
+}
+
+.bg-custom-2 {
+background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+}
+.navbar {
+  position:fixed;
+  z-index:1; /*Add this*/
+  width:100%;
+  height:60px;
+  top:0px;
+}

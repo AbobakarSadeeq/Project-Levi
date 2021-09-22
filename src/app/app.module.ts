@@ -5,13 +5,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/Modules/shared.module';
 import { AccountModule } from './admin-panel/account/account.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth-interceptor.service';
+import { AuthService } from './auth/auth.service';
 @NgModule({
   declarations: [
-    AppComponent
-     
-    
+    AppComponent,
 
- 
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,11 @@ import { AccountModule } from './admin-panel/account/account.module';
     BrowserAnimationsModule,
 
   ],
-  providers: [],
+  providers: [AuthService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

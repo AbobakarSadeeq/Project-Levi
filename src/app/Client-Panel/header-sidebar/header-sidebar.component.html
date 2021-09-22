@@ -6,9 +6,13 @@
           <a class="nav-link " style="cursor:pointer; font-size: 18px;" [routerLink]="['']"
             routerLinkActive="active"> <i class="fas fa-mobile" style="font-size: 30px;">&nbsp; New Mobiles Home Delivery</i> </a>
         </li>
-        <li class="nav-item ">
+        <li *ngIf="isLoggedIn()" class="nav-item ">
           <a class="nav-link " style="cursor:pointer; font-size: 15px; padding-top: 16px;" [routerLink]="['/Admin/Dashboard']"
           routerLinkActive="active">Admin Panel</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" style="cursor:pointer; font-size: 15px; padding-top: 16px;"
+          routerLinkActive="active"> | &nbsp; {{userDetails?.userName}}</a>
         </li>
 
       </ul>
@@ -17,26 +21,26 @@
 
 
         <li class="nav-item ">
-          <a class="nav-link cartButton" style="cursor:pointer; padding-top: 15px;" routerLinkActive="active"
+          <a class="nav-link cartButton" style="cursor:pointer; padding-top: 15px;"
             [routerLink]="['']"> <i class="fa"  style="font-size:24px;">&#xf07a;</i>
             <span class='badge badge-warning' id='lblCartCount'>  </span></a>
         </li>
-        <li class="nav-item dropdown">
+         <li class="nav-item dropdown" *ngIf="isLoggedIn()" >
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             <img src="../../../assets/Pictures/fox.jpg" width="40" height="40" class="rounded-circle">
-            Abobakar Sadeeq
+            {{userDetails?.userName}}
           </a>
-          <ul style="margin-left: -109px; width:320px;margin-top: 8px;" class="dropdown-menu"
+          <ul style="margin-left: -325px; width:320px;margin-top: -58px; " class="dropdown-menu"
             aria-labelledby="navbarDropdown">
-            <li class="abc"> <a class="dropdown-item" style="cursor:pointer"> Edit Profile
+            <li> <a class="dropdown-item" style="cursor:pointer"> Edit Profile
               </a></li>
 
-            <li><a class="dropdown-item" style="cursor:pointer"> Log Out AbobakarSadeeq@gmail.com
+            <li><a class="dropdown-item"  style="cursor:pointer" (click)="isLogOut()" style="cursor:pointer"> Log Out {{userDetails?.email}}
               </a></li>
           </ul>
         </li>
-
+        <li *ngIf="!isLoggedIn()" class="nav-item"><a class="nav-link" style="cursor:pointer; padding-top: 15px;" [routerLink]="['/Auth']">Sign Up/ Log In</a></li>
       </ul>
     </div>
   </nav>

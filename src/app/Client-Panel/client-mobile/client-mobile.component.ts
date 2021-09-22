@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MobileService } from 'src/app/admin-panel/product/mobile/mobile.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-client-mobile',
@@ -13,12 +14,18 @@ export class ClientMobileComponent implements OnInit {
 
   filterArray:any[] = [];
   subscription:Subscription;
+  showIndicator = false;
 
-  constructor(private _route: Router, private _activateRoute: ActivatedRoute, private _mobile:MobileService) {
+  constructor(private _authService:AuthService, private _route: Router, private _activateRoute: ActivatedRoute, private _mobile:MobileService) {
     this._route.routeReuseStrategy.shouldReuseRoute = () => false;
    }
 
   ngOnInit(): void {
+
+    this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
+      this.showIndicator = data;
+    });
+
 
     const findData = this._activateRoute.snapshot.params["multiData"];
 
@@ -56,4 +63,6 @@ export class ClientMobileComponent implements OnInit {
   }
 
 }
+
+
 

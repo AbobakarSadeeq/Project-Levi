@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MobileService } from 'src/app/admin-panel/product/mobile/mobile.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-mobile-detail',
@@ -15,14 +16,16 @@ export class MobileDetailComponent implements OnInit {
 
   addQuantity = 1;
   gettingInternetNetwork: any[] =[];
+  showIndicator = false;
 
-
-  constructor(private _MobileService:MobileService, private _routeActivate:ActivatedRoute) { }
+  constructor(private _authService:AuthService ,private _MobileService:MobileService, private _routeActivate:ActivatedRoute) { }
 
   ngOnInit(): void {
 
 
-
+    this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
+      this.showIndicator = data;
+    });
 
 
     const getUrlId = this._routeActivate.snapshot.params['id'];
