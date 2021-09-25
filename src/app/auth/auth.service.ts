@@ -63,29 +63,28 @@ export class AuthService {
 
   }
 
-    // Getting Photo From Server:
+    // User Address
 
-    // findinPhotoById(Id:any){
-    //   return this.httpRequest.get(environment.urlDepartment + "/" + Id);
-    // }
+    InserUserAddress(data:any){
+      return this.httpRequest.post("https://localhost:44344/api/UserAddress",data);
+    }
 
+    GetUserAddress(dataId:any){
+      return this.httpRequest.get("https://localhost:44344/api/UserAddress/" + dataId);
+    }
 
-    // GetListPhoto(userId:any){
-    // return  this.httpRequest.get(environment.UserPhotosURL +"/GetSingleAllUserPhoto/" + userId);
-    // }
+    UpdateUserAddress(data:any){
+      return this.httpRequest.put("https://localhost:44344/api/UserAddress",data);
+    }
 
-    // UploadOrInsertPhoto(userId:string, data:any){
-    //   return this.httpRequest.post(environment.UserPhotosURL+ "/" + userId, data);
-    // }
+    // Countries and Cities
+    getCities(){
+      return this.httpRequest.get("https://localhost:44344/api/City");
+    }
 
-    // DeletePhoto(photoId:number){
-    //   return this.httpRequest.delete(environment.UserPhotosURL+ "/" + photoId);
-    // }
-
-    // // When we want to send the post and put requrest then we should send the data with Id so, here we dont need any kind of data to send becuasse put want to send data so, we send empty.
-    // isMainPhotoChanging(userId:string, photoId:number) {
-    //   return this.httpRequest.put(environment.UserPhotosURL + "/SetMainPhoto/" + userId + "/" + photoId,{});
-    // }
+    getCountry(){
+      return this.httpRequest.get("https://localhost:44344/api/Country");
+    }
 
 
 }

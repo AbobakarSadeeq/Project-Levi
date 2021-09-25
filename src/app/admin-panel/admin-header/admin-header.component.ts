@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class AdminHeaderComponent implements OnInit {
 
   visibleSidebar1: any
-  showDropDown = { firstDropDown: false, secondDropDown: false };
-
+  showDropDown = { firstDropDown: false, secondDropDown: false, thirdDropDown: false };
+  imageValue:any;
   subscription: Subscription;
   userDetails: any;
 
@@ -21,6 +21,13 @@ export class AdminHeaderComponent implements OnInit {
     this.subscription = this._AuthService.profileData.subscribe((data: any) => {
       console.log(data);
     });
+
+    this._AuthService.profilePic.subscribe((data:any)=>{
+      this.imageValue = data;
+    });
+
+    this.imageValue = localStorage.getItem("photoUrl");
+
 
 
 

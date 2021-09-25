@@ -28,12 +28,12 @@
          <li class="nav-item dropdown" *ngIf="isLoggedIn()" >
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <img src="../../../assets/Pictures/fox.jpg" width="40" height="40" class="rounded-circle">
+            <img src="{{imageValue}}" width="40" height="40" class="rounded-circle">
             {{userDetails?.userName}}
           </a>
           <ul style="margin-left: -325px; width:320px;margin-top: -58px; " class="dropdown-menu"
             aria-labelledby="navbarDropdown">
-            <li> <a class="dropdown-item" style="cursor:pointer"> Edit Profile
+            <li> <a class="dropdown-item" style="cursor:pointer" [routerLink]="['/User/EditUser/',userDetails?.id]"> Edit Profile
               </a></li>
 
             <li><a class="dropdown-item"  style="cursor:pointer" (click)="isLogOut()" style="cursor:pointer"> Log Out {{userDetails?.email}}

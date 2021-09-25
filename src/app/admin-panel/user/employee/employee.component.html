@@ -1,0 +1,88 @@
+<app-admin-header></app-admin-header>
+
+
+<div class="container">
+  <div class="row">
+    <!-- List Role -->
+    <button (click)="AddEmployee()" class="btn btn-warning"><i class="fas fa-plus">Add Employee</i></button>
+
+    <h1 *ngIf="listEmployees ? listEmployees : 'Please Add Employee' "></h1>
+<div *ngFor="let employee of listEmployees"  style="margin-top: 10px;">
+  <div class="card mb-3" >
+    <div class="card-header">
+      <strong>Employee Id: {{employee?.employeeId}}</strong>
+    </div>
+    <div class="card-body">
+      <strong>
+       Employee Name: <h3 class="card-title" style="font-weight: solid;">{{employee?.firstName + " " + employee?.lastName}}</h3>
+      </strong>
+    </div>
+    <div class="card-footer">
+      <button  (click)="showDetailEmployee(employee?.employeeId)" class="btn btn-primary">Detail Employee</button> |
+      <a [routerLink]="['/Admin/EditEmployee', employee?.employeeId]" class="btn btn-warning">Edit Employee</a> |
+      <button  (click)="openDeleteDialogConfarmation(employee?.employeeId)" class="btn btn-danger">Remove Employee</button>
+    </div>
+  </div>
+</div>
+</div>
+  </div>
+
+
+<mat-spinner mode="indeterminate"  *ngIf="showIndicator" class="matSpinner"></mat-spinner>
+
+
+
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <button type="button" pButton label="Cancel" (click)="cd?.reject()" class="btn btn-primary"></button>
+    <button type="button" class="btn btn-danger"  label="Ok" (click)="cd?.accept()">Remove</button>
+  </p-footer>
+</p-confirmDialog>
+
+<p-dialog [(visible)]="displayModal" [dismissableMask]="true" [modal]="true" [style]="{width: '55vw', height: '800px'}"
+  [draggable]="false" [resizable]="false">
+  <p-header>
+    <h1 style="text-align: center;">Employee Detail</h1>
+  </p-header>
+  <div class="row">
+    <div class="col-sm-3">
+      <td><strong>FirstName</strong></td><br>
+      <td><span>{{singleEmployeeDetail?.firstName}}</span></td><br>
+
+      <td><strong>LastName</strong></td><br>
+      <td><span>{{singleEmployeeDetail?.lastName}}</span></td><br>
+
+      <td><strong>UserName</strong></td><br>
+      <td><span>{{singleEmployeeDetail?.user?.userName}}</span></td><br>
+
+      <td><strong>HomeAddress</strong></td><br>
+      <td><span>{{singleEmployeeDetail?.homeAddress}}</span></td><br>
+
+      <td><strong>PhoneNumber</strong></td><br>
+      <td><span>{{singleEmployeeDetail?.phoneNumber}}</span></td><br>
+
+      <td><strong>DateOfBirth</strong></td><br>
+      <td><span>{{singleEmployeeDetail?.dathOfBirth | date}}</span></td><br>
+
+      <td><strong>EmployeeHireDate</strong></td><br>
+      <td><span>{{singleEmployeeDetail?.employeeHireDate | date}}</span></td><br>
+
+      <td><strong>Salary</strong></td><br>
+      <td><span>{{singleEmployeeDetail?.salary | currency: 'Rs ': 'symbol':'1.0'}}</span></td><br>
+
+    </div>
+
+    <div class="col-sm-3">
+      <td><strong>Gender</strong></td><br>
+      <td><span>{{singleEmployeeDetail?.gender}}</span></td><br>
+
+      <td><strong>RoleName</strong></td><br>
+      <td><span>{{singleEmployeeDetail?.roleName}}</span></td><br>
+
+      <td><strong>Email</strong></td><br>
+      <td><span>{{singleEmployeeDetail?.user?.email}}</span></td><br>
+
+    </div>
+  </div>
+</p-dialog>
+

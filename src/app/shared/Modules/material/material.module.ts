@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
+import { MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -8,6 +8,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatRadioModule} from '@angular/material/radio';
+
 @NgModule({
   declarations: [],
   imports:[
@@ -19,7 +22,9 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    MatTabsModule,
+    MatRadioModule
   ],
   exports: [
     MatCardModule,
@@ -30,7 +35,9 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    MatTabsModule,
+    MatRadioModule
 
   ]
 })

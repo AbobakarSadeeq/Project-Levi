@@ -64,12 +64,15 @@ export class AuthComponent implements OnInit {
       //Log In
       this.loadingIndicator = true;
       this._AuthService.logIn(data.value).pipe(delay(3000)).subscribe((responseData: any) => {
+        let gettingImageUrl = responseData.url ? responseData.url : "../../assets/Pictures/No Image.jpg"
         localStorage.setItem('token', responseData.token);
+        localStorage.setItem("photoUrl", gettingImageUrl);
         this.loadingIndicator = false;
         this._AuthService.profileData.next({
           userName: responseData.userName,
           email: responseData.email,
           id: responseData.id,
+          photoUrl: gettingImageUrl
         });
         this.httpRoute.navigate(['/'], { queryParams: { ClientName: responseData.userName, ClienEmail: responseData.email } });
       },

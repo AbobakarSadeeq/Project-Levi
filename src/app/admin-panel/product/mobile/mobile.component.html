@@ -30,7 +30,7 @@
             <td>{{mobile?.storage}}</td>
             <td>{{mobile?.sellUnits}}</td>
             <td>{{mobile?.quantity}}</td>
-            <td>{{mobile?.mobilePrice}}</td>
+            <td>{{mobile?.mobilePrice | currency: 'Rs ': 'symbol':'1.0'}}</td>
             <td><button class="btn btn-outline-primary" (click)="showModalDialog(mobile?.mobile_Id)"
                 style="margin-top: 7px;">Details</button></td>
             <td>

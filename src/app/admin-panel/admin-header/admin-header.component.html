@@ -22,12 +22,13 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">
-          <img src="../../../assets/Pictures/fox.jpg" width="40" height="40" class="rounded-circle">
+          <img src="{{imageValue}}" width="40" height="40" class="rounded-circle">
           {{userDetails?.userName}}
         </a>
         <ul style="margin-left: -109px; width:320px;margin-top: 8px;" class="dropdown-menu"
           aria-labelledby="navbarDropdown">
-          <li class="abc"> <a class="dropdown-item" style="cursor:pointer"> Edit Profile
+          <li class="abc"> <a class="dropdown-item" [routerLink]="['/User/EditUser/',userDetails?.id]"
+              style="cursor:pointer"> Edit Profile
             </a></li>
 
           <li><a class="dropdown-item" (click)="isLogOut()" style="cursor:pointer"> Log Out {{userDetails?.email}}
@@ -52,23 +53,39 @@
   <a [routerLink]="['/Admin/Dashboard']"><i class="fas fa-tachometer"
       style="font-size: 25px; color:#ffffff; margin-left:35px;"> Dashboard </i></a>
   <hr style="color: white;">
-
-  <a routerLinkActive="active-link" [routerLink]="['/Admin/UserRoles']" routerLinkActive="active"><i class="fas fa-user"
-      style="font-size: 25px; color:#ffffff; margin-left:35px;"> Users Roles </i></a>
-  <hr style="color: white;">
   <a [routerLink]="['/Admin/Account']" routerLinkActive="active"><i class="fas fa-dollar-sign"
       style="font-size: 25px; color:#ffffff; margin-left:35px;"> Account </i></a>
   <hr style="color: white;">
+  <a style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
+    (click)="showDropDown.thirdDropDown= !showDropDown.thirdDropDown"><i
+      style="font-size: 25px; color:#ffffff; margin-left:35px;" class="fas fa-caret-down" aria-hidden="true">&nbsp;
+      User</i></a>
+  <div *ngIf="showDropDown.thirdDropDown">
+    <ul style="font-size: 17px;">
+      <li style="color: #ffffff; padding: 8px;">
+        <a [routerLink]="['/Admin/UserRoles']" routerLinkActive="active-link" routerLinkActive="active"><i
+            class="fas fa-user-tag" style="font-size: 20px; color:#ffffff; margin-left:35px;"> Users Roles </i></a>
+      </li>
+      <li style="color: #ffffff; padding: 8px;">
+        <a [routerLink]="['/Admin/Employee']" routerLinkActive="active-link" routerLinkActive="active"><i
+            class="fas fa-user" style="font-size: 20px; color:#ffffff; margin-left:35px;"> Employee </i></a>
+      </li>
+    </ul>
+
+  </div>
+  <hr style="color: white;">
+
 
   <!-- Drop-Down-List -->
   <a style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
-    (click)="showDropDown.firstDropDown= !showDropDown.firstDropDown"><i style="font-size: 25px; color:#ffffff; margin-left:35px;"
-      class="fas fa-caret-down" aria-hidden="true">&nbsp; Product</i></a>
+    (click)="showDropDown.firstDropDown= !showDropDown.firstDropDown"><i
+      style="font-size: 25px; color:#ffffff; margin-left:35px;" class="fas fa-caret-down" aria-hidden="true">&nbsp;
+      Product</i></a>
   <div *ngIf="showDropDown.firstDropDown">
     <ul style="font-size: 17px;">
       <li style="color: #ffffff; padding: 8px;">
-        <a [routerLink]="['/Admin/Mobile']" routerLinkActive="active-link" routerLinkActive="active"><i class="fas fa-mobile"
-            style="font-size: 20px; color:#ffffff; margin-left:35px;"> Mobile </i></a>
+        <a [routerLink]="['/Admin/Mobile']" routerLinkActive="active-link" routerLinkActive="active"><i
+            class="fas fa-mobile" style="font-size: 20px; color:#ffffff; margin-left:35px;"> Mobile </i></a>
       </li>
       <li style="color: #ffffff; padding: 8px;">
         <a [routerLink]="[]" routerLinkActive="active-link" routerLinkActive="active"><i class="fas fa-user"
@@ -79,21 +96,22 @@
   <hr style="color: white;">
   <!-- Second Drop-Down-List -->
   <a style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
-    (click)="showDropDown.secondDropDown= !showDropDown.secondDropDown"><i style="font-size: 25px; color:#ffffff; margin-left:35px;"
-      class="fas fa-caret-down" aria-hidden="true">&nbsp; Extra Product Info</i></a>
+    (click)="showDropDown.secondDropDown= !showDropDown.secondDropDown"><i
+      style="font-size: 25px; color:#ffffff; margin-left:35px;" class="fas fa-caret-down" aria-hidden="true">&nbsp;
+      Extra Product Info</i></a>
   <div *ngIf="showDropDown.secondDropDown">
     <ul style="font-size: 17px;">
       <li style="color: #ffffff; padding: 8px;">
-        <a [routerLink]="['/Admin/Category']" routerLinkActive="active-link" routerLinkActive="active"><i class="fas fa-warehouse"
-            style="font-size: 20px; color:#ffffff; margin-left:35px;"> Category </i></a>
+        <a [routerLink]="['/Admin/Category']" routerLinkActive="active-link" routerLinkActive="active"><i
+            class="fas fa-warehouse" style="font-size: 20px; color:#ffffff; margin-left:35px;"> Category </i></a>
       </li>
       <li style="color: #ffffff; padding: 8px;">
-        <a [routerLink]="['/Admin/Brand']" routerLinkActive="active-link" routerLinkActive="active"><i class="fab fa-stack-overflow"
-            style="font-size: 20px; color:#ffffff; margin-left:35px;"> Brand </i></a>
+        <a [routerLink]="['/Admin/Brand']" routerLinkActive="active-link" routerLinkActive="active"><i
+            class="fab fa-stack-overflow" style="font-size: 20px; color:#ffffff; margin-left:35px;"> Brand </i></a>
       </li>
       <li style="color: #ffffff; padding: 8px;">
-        <a [routerLink]="['/Admin/Carousel']" routerLinkActive="active-link" routerLinkActive="active"><i class="far fa-images"
-            style="font-size: 20px; color:#ffffff; margin-left:35px;"> Carousel Image </i></a>
+        <a [routerLink]="['/Admin/Carousel']" routerLinkActive="active-link" routerLinkActive="active"><i
+            class="far fa-images" style="font-size: 20px; color:#ffffff; margin-left:35px;"> Carousel Image </i></a>
       </li>
     </ul>
   </div>

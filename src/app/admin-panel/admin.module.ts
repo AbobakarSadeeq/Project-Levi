@@ -6,7 +6,6 @@ import { AdminPanelComponent } from './admin-panel.component';
 import { SharedModule } from '../shared/Modules/shared.module';
 import { AdminHeaderModule } from './admin-header/admin-header.module';
 import { OperatingSystemComponent } from './extra-product-info/operating-system/operating-system.component';
-import { UserRolesComponent } from './user-roles/user-roles.component';
 
 @NgModule({
   declarations: [AdminPanelComponent, OperatingSystemComponent],

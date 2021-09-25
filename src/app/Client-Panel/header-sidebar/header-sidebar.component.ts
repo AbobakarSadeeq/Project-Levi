@@ -15,7 +15,7 @@ export class HeaderSidebarComponent implements OnInit {
   subscription: Subscription;
   operatingSystem: any[] = [];
   brand: any[] = [];
-
+  imageValue:any;
   userDetails: any;
 
 
@@ -29,7 +29,11 @@ export class HeaderSidebarComponent implements OnInit {
     });
 
 
+    this._AuthService.profilePic.subscribe((data:any)=>{
+      this.imageValue = data;
+    });
 
+    this.imageValue = localStorage.getItem("photoUrl");
 
 
     this.subscription = this._AuthService.GetLogInProfile().subscribe((data: any) => {
