@@ -15,6 +15,12 @@ export class EmployeeComponent implements OnInit {
   showIndicator = false;
   listEmployees: any[] = [];
 
+  gettingUnpaidEmployeePayment:any[] = [];
+  gettingPaidEmployeePayment:any[] = [];
+  todayDate:Date;
+
+
+
   displayModal = false;
   singleEmployeeDetail:any;
 
@@ -25,7 +31,37 @@ export class EmployeeComponent implements OnInit {
       this.showIndicator = data;
     });
 
+
+    this.todayDate = new Date();
+    this.todayDate.getDate();
+
     this.getAllEmployees();
+    this.gettingAllEmployeePayments();
+  }
+
+
+  gettingAllEmployeePayments(){
+    this.subscription = this._employeeService.getAllEmployeesPayment().subscribe((data:any[])=>{
+      this.gettingUnpaidEmployeePayment = data.filter(a=>a.payment == false);
+      this.gettingPaidEmployeePayment = data.filter(a=>a.payment == true);
+
+    })
+  }
+
+  updateEmployeePayment(data:any){
+    debugger;
+    if(data.payment == false){
+      data.payment = true;
+      this.subscription = this._employeeService.UpdateEmployeePayment(data).subscribe(()=>{
+        this.gettingAllEmployeePayments();
+      });
+    }else{
+      data.payment = false;
+      this.subscription = this._employeeService.UpdateEmployeePayment(data).subscribe(()=>{
+        this.gettingAllEmployeePayments();
+      });
+    }
+
   }
 
 
@@ -46,6 +82,7 @@ export class EmployeeComponent implements OnInit {
   getAllEmployees(){
     this.subscription = this._employeeService.getAllEmployees().subscribe((data)=>{
       this.listEmployees = data;
+      this.gettingAllEmployeePayments();
     })
   }
 

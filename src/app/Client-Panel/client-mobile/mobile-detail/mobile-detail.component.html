@@ -3,6 +3,8 @@
 
 
 
+
+
   <!-- Carousel Column -->
   <div class="row">
    <div class="col-lg-3">
@@ -65,9 +67,9 @@
       <div>
        <span style="color: grey; font-size: 12px;">Quantity of Product</span>
        <div style="margin-top: 4px; margin-bottom: 16px;">
-        <button class="btn"  (click)="subtractingProductQuantity()" [disabled]="addQuantity==1" >-</button>&nbsp;
+        <button class="btn" style="background-color:#C8C8C8;"  (click)="subtractingProductQuantity()" [disabled]="addQuantity==1" >-</button>&nbsp;
         <span>{{addQuantity}}</span> &nbsp;
-        <button class="btn" (click)="addingProductQuantity()" [disabled]="addQuantity == 5"  >+</button>
+        <button class="btn" style="background-color:#C8C8C8;" (click)="addingProductQuantity()" [disabled]="addQuantity == 10"  >+</button>
        </div>
       </div>
      </li>
@@ -82,8 +84,7 @@
 
      <!-- Cart-View -->
     <button type="button" class="btn btn-primary " style="  border-radius: 15%; width: 200px; height: 45px;" id="addData" data-toggle="modal"
-    data-target="#exampleModal">Buy
-     Now</button>
+    data-target="#exampleModal">Buy Now</button>
     </div>
   </div>
     </div>

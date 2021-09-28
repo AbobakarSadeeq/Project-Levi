@@ -99,7 +99,7 @@ export class AuthComponent implements OnInit {
       //Sign Up
       this.loadingIndicator = true;
       this._AuthService.SignUp(data.value).pipe(delay(3000)).subscribe((response: any) => {
-        this.successFullInsert = "Sign Up Operation SuccessFull! And Now Logged it In";
+        this.successFullInsert = "Sign Up Operation SuccessFull! And Now Please Log In";
       this.loadingIndicator = false;
 
       },

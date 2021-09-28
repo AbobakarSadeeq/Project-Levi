@@ -29,7 +29,7 @@ export class AddMobileComponent implements OnInit {
   constructor(private _authService:AuthService, private fb: FormBuilder, private _MobileService: MobileService, private _route:Router) { }
 
   ngOnInit(): void {
-    
+
     this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
       this.showIndicator = data;
     });
@@ -191,7 +191,7 @@ export class AddMobileComponent implements OnInit {
       this._route.navigate(["Admin/Mobile"]);
     });
 
-
+ 
 
   }
 

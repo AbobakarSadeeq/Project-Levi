@@ -30,6 +30,15 @@ export class EmployeeService {
     return this.http.put("https://localhost:44344/api/Employee/", data);
   }
 
+  getAllEmployeesPayment(): Observable<any>{
+    return this.http.get("https://localhost:44344/api/Employee/GetEmployeesPayment");
+  }
+
+  UpdateEmployeePayment(data:any){
+    return this.http.put("https://localhost:44344/api/Employee/UpdateEmployeePayment", data);
+  }
+
+
 
 
 }

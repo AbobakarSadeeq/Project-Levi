@@ -24,10 +24,10 @@
     <form #roleForm="ngForm" (ngSubmit)="creatingRoles(roleForm)">
       <div class="form-group">
         <label for="Name"><strong>Role Name</strong></label>
-        <input pattern="^[a-zA-Z0-9]+([a-zA-Z0-9][a-zA-Z0-9])*[a-zA-Z0-9]+$" required #val="ngModel" type="text" ngModel
+        <input pattern="^[A-Z][a-zA-Z0-9]+([a-zA-Z0-9][a-zA-Z0-9])*[a-zA-Z0-9]+$" required #val="ngModel" type="text" ngModel
           id="name" class="form-control" name="RoleName" required placeholder="RoleName" />
-         <span *ngIf="val.invalid &&val.touched" style="color:red;">Please Write the Role Name
-          or any spaces an underscore</span>
+         <span *ngIf="val.invalid &&val.touched" style="color:red;">Please Write the Role Name first Letter capital
+          or any spaces an underscore are not allowed</span>
       </div>
       <div>
         <button type="submit" class="btn btn-primary" [disabled]="roleForm.invalid ">Add Role</button>
@@ -44,24 +44,26 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+
+
 <div *ngFor="let roleItems of listRole">
+
   <div class="card mb-3">
     <div class="card-header">
-      <strong>Role Id: {{roleItems.id}}</strong>
+      <strong>Role Id: {{roleItems?.id}}</strong>
     </div>
     <div class="card-body">
       <strong>
-        <h3 class="card-title" style="font-weight: solid;">{{roleItems.name}}</h3>
+        <h3 class="card-title" style="font-weight: solid;">{{roleItems?.name}}</h3>
       </strong>
     </div>
     <div class="card-footer">
-      <a [routerLink]="['/Admin/EditRole',roleItems?.id]" class="btn btn-primary">Edit Role</a> |
-      <button  (click)="openDeleteDialogConfarmation(roleItems?.id)" class="btn btn-danger">Remove Role</button>
+      <button [disabled]="roleItems?.name == 'Employee'" [routerLink]="['/Admin/EditRole',roleItems?.id]" class="btn btn-primary">Edit Role</button> |
+      <button [disabled]="roleItems?.name == 'Employee'" (click)="openDeleteDialogConfarmation(roleItems?.id)" class="btn btn-danger">Remove Role</button>
     </div>
   </div>
 </div>
 </div>
-
 
 <p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
   <p-footer>

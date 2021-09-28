@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,6 +13,8 @@ import { EmployeeService } from '../employee.service';
   styleUrls: ['./add-employee.component.css']
 })
 export class AddEmployeeComponent implements OnInit {
+
+  errorMessage:any = null;
   showIndicator = false;
   subscription:Subscription;
   employeeFormData:FormGroup;
@@ -63,7 +66,15 @@ export class AddEmployeeComponent implements OnInit {
     formFrom.append("gender", this.employeeFormData.value['gender']);
     this.subscription = this._employeeService.AddEmployee(formFrom).subscribe(()=>{
       this._route.navigate(['/Admin/Employee']);
-    })
+    },
+    (errorResponse: HttpErrorResponse) => {
+      setTimeout(()=>{
+        this.showIndicator = false
+        this.errorMessage = errorResponse.error;
+
+      },2000);
+    }
+    )
 
   }
 
@@ -71,6 +82,10 @@ export class AddEmployeeComponent implements OnInit {
     this.subscription = this._userRoles.getListRole().subscribe((data:any)=>{
       this.roleList = data;
     });
+  }
+
+  removeErrorEvent() {
+    this.errorMessage = null;
   }
 
 

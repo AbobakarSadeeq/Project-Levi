@@ -8,6 +8,14 @@
 
 <div class="container">
 
+  <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMessage">
+    {{errorMessage}}
+    <a (click)="removeErrorEvent()" style="cursor: pointer; float: right;">
+      <span aria-hidden="true">&times;</span>
+    </a>
+  </div>
+
+
   <h1 style="font-size: 33px;">Add Employee</h1>
 
   <!-- Adding Mobile Form -->

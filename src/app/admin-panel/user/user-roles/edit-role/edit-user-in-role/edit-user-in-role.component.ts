@@ -5,6 +5,11 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { UserRolesService } from '../../user-roles.service';
 
+interface student {
+  id: number,
+  name: string
+}
+
 @Component({
   selector: 'app-edit-user-in-role',
   templateUrl: './edit-user-in-role.component.html',
@@ -13,14 +18,15 @@ import { UserRolesService } from '../../user-roles.service';
 export class EditUserInRoleComponent implements OnInit {
 
   showIndicator = false;
-  userAllData:any[] = [];
-  subscription:Subscription;
-  formData:FormGroup;
+  userAllData: any[] = [];
+  subscription: Subscription;
+  formData: FormGroup;
 
-
-  constructor(private fb:FormBuilder, private _authService: AuthService, private _activateRoute:ActivatedRoute, private route:Router, private _userRole:UserRolesService) { }
+  constructor(private fb: FormBuilder, private _authService: AuthService, private _activateRoute: ActivatedRoute, private route: Router, private _userRole: UserRolesService) { }
 
   ngOnInit(): void {
+
+
     const findId = this._activateRoute.snapshot.params['id'];
     this.subscription = this._userRole.getEditUserRole(findId).subscribe((Data: any) => {
       this.userAllData = Data;
@@ -29,17 +35,17 @@ export class EditUserInRoleComponent implements OnInit {
 
 
 
-  this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
+    this.subscription = this._authService.loadingSpinnerLogOut.subscribe((data: any) => {
       this.showIndicator = data;
     });
   }
 
-  onChange(changeData:any){
+  onChange(changeData: any) {
     debugger;
     const findingIndex = this.userAllData.indexOf(changeData);
-    if(this.userAllData[findingIndex].isSelected == true){
+    if (this.userAllData[findingIndex].isSelected == true) {
       this.userAllData[findingIndex].isSelected = false;
-    }else{
+    } else {
       this.userAllData[findingIndex].isSelected = true;
 
     }
@@ -48,16 +54,16 @@ export class EditUserInRoleComponent implements OnInit {
   }
 
 
-  updateSubmitUsersRole(){
+  updateSubmitUsersRole() {
     const formFrom = new FormData();
     for (let i = 0; i < this.userAllData.length; i++) {
       formFrom.append(`model[${i.toString()}].userId`, this.userAllData[i].userId);
       formFrom.append(`model[${i.toString()}].userEmail`, this.userAllData[i].userEmail);
       formFrom.append(`model[${i.toString()}].isSelected`, this.userAllData[i].isSelected);
-     }
+    }
 
-     this.showIndicator = true;
-     this._userRole.editUserRole(formFrom, this._activateRoute.snapshot.params['id']).subscribe(() => {
+    this.showIndicator = true;
+    this._userRole.editUserRole(formFrom, this._activateRoute.snapshot.params['id']).subscribe(() => {
       setTimeout(() => { this.showIndicator = false }, 3000);
       this.route.navigate(["/Admin/UserRoles"]);
     });

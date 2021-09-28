@@ -20,7 +20,7 @@ export class MobileComponent implements OnInit {
   gettingInternetNetwork: any[] = [];
   singleMobileData: any;
 
-  constructor(private _authService:AuthService, private route: Router, private _MobileService: MobileService, private DialogService: ConfirmationService) { }
+  constructor(private _authService:AuthService, private _route: Router, private _MobileService: MobileService, private DialogService: ConfirmationService) { }
 
   ngOnInit(): void {
 
@@ -33,7 +33,7 @@ export class MobileComponent implements OnInit {
 
   // Navigation to Add mobile component:
   AddMobileNavigation() {
-    this.route.navigate(["Admin/AddMobile"])
+    this._route.navigate(["Admin/AddMobile"])
   }
 
   getAllMobiles() {

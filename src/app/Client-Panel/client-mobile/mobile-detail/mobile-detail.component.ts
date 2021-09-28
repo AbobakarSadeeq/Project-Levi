@@ -10,59 +10,59 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./mobile-detail.component.css']
 })
 export class MobileDetailComponent implements OnInit {
-
-  subscription:Subscription;
-  mobileDetailData:any
+ 
+  subscription: Subscription;
+  mobileDetailData: any
 
   addQuantity = 1;
-  gettingInternetNetwork: any[] =[];
+  gettingInternetNetwork: any[] = [];
   showIndicator = false;
 
-  constructor(private _authService:AuthService ,private _MobileService:MobileService, private _routeActivate:ActivatedRoute) { }
+  constructor(private _authService: AuthService, private _MobileService: MobileService, private _routeActivate: ActivatedRoute) { }
 
   ngOnInit(): void {
 
 
-    this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
+    this.subscription = this._authService.loadingSpinnerLogOut.subscribe((data: any) => {
       this.showIndicator = data;
     });
 
 
     const getUrlId = this._routeActivate.snapshot.params['id'];
-  this.subscription =  this._MobileService.getSingleMobile(getUrlId).subscribe((data:any)=>{
-    this.mobileDetailData = data;
+    this.subscription = this._MobileService.getSingleMobile(getUrlId).subscribe((data: any) => {
+      this.mobileDetailData = data;
     });
 
-    setTimeout(()=>{
+    setTimeout(() => {
       this.getInternetNetworks(this.mobileDetailData?.networksMobiles);
-    },1000)
+    }, 1000)
   }
 
 
 
 
   getInternetNetworks(mobileNetworksData: any) {
-    this.gettingInternetNetwork.splice(0,this.gettingInternetNetwork.length);
+    this.gettingInternetNetwork.splice(0, this.gettingInternetNetwork.length);
     this._MobileService.getInternetNetwork().subscribe((data: any[]) => {
       debugger;
-        for (var mobileNetworks in mobileNetworksData) {
-          for (var networks in data) {
-            if (mobileNetworksData[mobileNetworks].internetNetworkId == data[networks].internetNetwork_Id) {
-              this.gettingInternetNetwork.push(data[networks]);
-              break;
-            }
+      for (var mobileNetworks in mobileNetworksData) {
+        for (var networks in data) {
+          if (mobileNetworksData[mobileNetworks].internetNetworkId == data[networks].internetNetwork_Id) {
+            this.gettingInternetNetwork.push(data[networks]);
+            break;
           }
         }
+      }
     })
   }
 
 
 
-  addingProductQuantity(){
+  addingProductQuantity() {
     this.addQuantity++
   }
 
-  subtractingProductQuantity(){
+  subtractingProductQuantity() {
     this.addQuantity--
   }
 
