@@ -1,16 +1,15 @@
 <app-admin-header></app-admin-header>
 
-<div>
-  
-</div>
 
 <div class="container">
   <div class="row">
+    <h1 style="text-decoration: underline; font-size: 50px;">All Mobiles</h1>
+
     <button (click)="AddMobileNavigation()" class="btn btn-warning"><i class="fas fa-plus">Add Mobile</i></button>
     <div class="card" style="margin-top: 10px;">
-      <p-table [value]="getMobiles" [paginator]="true" [rows]="8" [showCurrentPageReport]="true"
-        responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [rowsPerPageOptions]="[10,25,50]">
+      <p-table [value]="getMobiles.mobileData"  [rows]="8" [showCurrentPageReport]="true"
+        responsiveLayout="scroll"  currentPageReportTemplate="Showing {first} to {last} of {{getMobiles?.count}} entries"
+        [rowsPerPageOptions]="[8,25,50]">
         <ng-template pTemplate="header">
           <tr>
             <th>Mobile-Name</th>
@@ -21,7 +20,7 @@
             <th>Quantity</th>
             <th>Price</th>
             <th>Detail</th>
-            <th>Update Or Delete</th>
+            <th>Actions</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-mobile>
@@ -44,15 +43,15 @@
                 (click)="openDeleteDialogConfarmation(mobile?.mobile_Id)"></button>
             </td>
           </tr>
+
         </ng-template>
         <!-- Extra template not worth to show its icons -->
-        <ng-template pTemplate="paginatorleft">
-          <p-button type="button" styleClass="p-button-text"></p-button>
-        </ng-template>
-        <ng-template pTemplate="paginatorright">
-          <p-button type="button" styleClass="p-button-text"></p-button>
-        </ng-template>
+
+
+        <p>No direction links:</p>
       </p-table>
+<ngb-pagination  style="padding-left: 500px;"  (pageChange)="tablePageNo($event)" [pageSize]="8" [collectionSize]="getMobiles.count" [page]="1" [directionLinks]="true"></ngb-pagination>
+
     </div>
 
 
@@ -185,3 +184,5 @@
 
 
 <div></div>
+
+

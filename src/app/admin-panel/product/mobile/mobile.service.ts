@@ -36,7 +36,11 @@ export class MobileService {
   }
 
   getAllMobile(): Observable<any>{
-    return this.http.get("https://localhost:44344/api/Mobile");
+    return this.http.get("https://localhost:44344/api/Mobile/GetAllsMobile");
+  }
+
+  getMobilesbyTablePage(pageNo:number):Observable<any>{
+    return this.http.get("https://localhost:44344/api/Mobile/GetMobilesByPagesNo/" + pageNo);
   }
 
   getSingleMobile(dataId:number){

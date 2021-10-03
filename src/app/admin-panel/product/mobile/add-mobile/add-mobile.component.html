@@ -184,7 +184,7 @@
     </div><br>
 
     <br>
-    <button type="submit" class="btn btn-primary"><i class="fas fa-plus" (click)="submitMobile()"> &nbsp; Insert Mobile</i></button>
+    <button type="submit" [disabled]="mobileFormData.invalid" class="btn btn-primary"><i class="fas fa-plus" (click)="submitMobile()"> &nbsp; Insert Mobile</i></button>
   </form>
 
 

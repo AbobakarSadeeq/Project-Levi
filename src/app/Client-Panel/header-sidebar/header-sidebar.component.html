@@ -47,6 +47,9 @@
       </ul>
     </div>
   </nav>
+
+
+
   <aside
     style="position: relative; float: left; background-color: white; width: 300px; margin-left: 25px; margin-top: 60px;">
     <div class="first-box">
@@ -55,7 +58,7 @@
 
 
         <li *ngFor="let item of filterBrand"><a [routerLink]="['/Mobile',item?.brand_Id]">{{item?.brandName}} &nbsp;
-            &nbsp;</a> <b class="badge badge-light" style="color: black; background-color:#ffe77aff;"> {{item?.brandBadges}}</b></li>
+            &nbsp;</a> <b class="badge badge-light" style="color: black; background-color:#FCF6F5FF;"> {{item?.brandBadges}}</b></li>
 
       </ul>
     </div>
@@ -65,7 +68,7 @@
       <ul class="first-box-items">
         <li *ngFor="let item of operatingSystemFilter"><a [routerLink]="['/Mobile',item?.operatingSystem_Id]"
             [queryParams]="{changeData:'OS'}">{{item?.operatingName}} &nbsp; &nbsp; </a>
-            <b class="badge" style="color: black;  background-color:#ffe77aff;">{{item?.OSBadges}}</b>
+            <b class="badge" style="color: black;  background-color:#FCF6F5FF;">{{item?.OSBadges}}</b>
           </li>
 
       </ul>
@@ -74,9 +77,9 @@
     <div class="third-box">
       <span>Screen-Sizes</span><br>
       <ul class="first-box-items">
-        <li><a [routerLink]="['/Mobile','5.5']" [queryParams]="{mobileSize:'ScreenSizes'}">5.5  &nbsp; &nbsp;</a>  <b class="badge" style="color: black;  background-color:#ffe77aff;">{{inchesBadges?.filterFiveInchesMobile}}</b></li>
-        <li><a [routerLink]="['/Mobile','6.0']" [queryParams]="{mobileSize:'ScreenSizes'}">6.0  &nbsp; &nbsp;</a> <b class="badge" style="color: black;  background-color:#ffe77aff;">{{inchesBadges?.filterSixInchesMobile}}</b></li>
-        <li><a [routerLink]="['/Mobile','6.8']" [queryParams]="{mobileSize:'ScreenSizes'}">6.8  &nbsp; &nbsp;</a> <b class="badge" style="color: black;  background-color:#ffe77aff;">{{inchesBadges?.filterSixEightInchesMobile}}</b></li>
+        <li><a [routerLink]="['/Mobile','5.5']" [queryParams]="{mobileSize:'ScreenSizes'}">5.5  &nbsp; &nbsp;</a>  <b class="badge" style="color: black;  background-color:#FCF6F5FF;">{{inchesBadges?.filterFiveInchesMobile}}</b></li>
+        <li><a [routerLink]="['/Mobile','6.0']" [queryParams]="{mobileSize:'ScreenSizes'}">6.0  &nbsp; &nbsp;</a> <b class="badge" style="color: black;  background-color:#FCF6F5FF;">{{inchesBadges?.filterSixInchesMobile}}</b></li>
+        <li><a [routerLink]="['/Mobile','6.8']" [queryParams]="{mobileSize:'ScreenSizes'}">6.8  &nbsp; &nbsp;</a> <b class="badge" style="color: black;  background-color:#FCF6F5FF;">{{inchesBadges?.filterSixEightInchesMobile}}</b></li>
       </ul>
     </div>
   </aside>

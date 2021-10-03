@@ -1,8 +1,10 @@
 <app-admin-header></app-admin-header>
 
 
+
 <div class="container">
   <div class="row">
+<h1 style="font-size: 33px; text-decoration: underline;">Add Carousel</h1>
     <button (click)="AddCarouselModel()"  class="btn btn-warning"><i class="fas fa-plus">Add Carousel</i></button>
     <div class="card" style="margin-top: 10px;">
       <p-table [value]="CarouselAllData" [paginator]="true" [rows]="8" [showCurrentPageReport]="true"
@@ -14,7 +16,7 @@
             <th>Image-Priority</th>
             <th>Image-title</th>
             <th>Image-description</th>
-            <th>Update And Delete</th>
+            <th>Actions</th>
 
           </tr>
         </ng-template>
@@ -63,7 +65,7 @@
     <input formControlName="imageDescription" type="text" class="form-control" placeholder="Image Description"><br>
     <input (change)="fileChange($event)" type="file" formControlName="File" class="form-control-file" id="exampleFormControlFile1">
 <br><br>
-   <button class="btn btn-primary" (click)="SubmitCarouselForm()">Add Carousel</button>
+   <button class="btn btn-primary" [disabled]="CarouselFormData.invalid" (click)="SubmitCarouselForm()">Add Carousel</button>
   </form>
 
 </p-dialog>

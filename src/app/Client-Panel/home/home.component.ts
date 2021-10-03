@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+
     this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
       this.showIndicator = data;
     });

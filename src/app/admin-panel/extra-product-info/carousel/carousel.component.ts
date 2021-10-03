@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
@@ -26,10 +26,10 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.CarouselFormData = this.fb.group({
-      imagePriority: [''],
-      imageTitle: [''],
-      imageDescription: [''],
-      File: [''],
+      imagePriority: ['',Validators.required],
+      imageTitle: ['',Validators.required],
+      imageDescription: ['', Validators.required],
+      File: ['', Validators.required],
     });
 
     this.subscription =  this._AuthService.loadingSpinnerLogOut.subscribe((data:any)=>{

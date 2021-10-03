@@ -50,7 +50,6 @@ export class EditUserInRoleComponent implements OnInit {
 
     }
 
-    console.log(this.userAllData);
   }
 
 

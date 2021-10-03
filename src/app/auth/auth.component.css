@@ -12,3 +12,7 @@
   filter: alpha(opacity=40);
   left: 50%; margin-left: -4em;
 }
+
+.validationSpace{
+   margin-bottom: 8px;
+}

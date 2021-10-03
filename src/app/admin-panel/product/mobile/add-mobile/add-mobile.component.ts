@@ -1,6 +1,6 @@
 import { Route } from '@angular/compiler/src/core';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -35,32 +35,32 @@ export class AddMobileComponent implements OnInit {
     });
 
     this.mobileFormData = this.fb.group({
-      mobileName: [''],
-      processor: [''],
-      storage: [''],
-      batteryMah: [''],
-      ram: [''],
-      launchDate: [''],
-      mobileWeight: [''],
-      screenSize: [''],
-      charger: [''],
-      resolution: [''],
-      headPhoneJack: [''],
-      bluetooth: [''],
-      uSBConnector: [''],
-      wifi: [''],
-      mobilePrice: [''],
-      quantity: [''],
-      screenType: [''],
-      brand: [null],
-      color: [null],
-      operatingSystem: [null],
-      operatingSystemVersion: [null],
-      stockAvailiability:[''],
-      backCameras: this.fb.array([this.fb.group({ cameraDetail: [''] })]),
+      mobileName: ['', Validators.required],
+      processor: ['', Validators.required],
+      storage: ['', Validators.required],
+      batteryMah: ['', Validators.required],
+      ram: ['', Validators.required],
+      launchDate: ['', Validators.required],
+      mobileWeight: ['', Validators.required],
+      screenSize: ['', Validators.required],
+      charger: ['', Validators.required],
+      resolution: ['', Validators.required],
+      headPhoneJack: ['', Validators.required],
+      bluetooth: ['', Validators.required],
+      uSBConnector: ['', Validators.required],
+      wifi: ['', Validators.required],
+      mobilePrice: ['', Validators.required],
+      quantity: ['',Validators.required],
+      screenType: ['', Validators.required],
+      brand: [null, Validators.required],
+      color: [null, Validators.required],
+      operatingSystem: [null, Validators.required],
+      operatingSystemVersion: [null, Validators.required],
+      stockAvailiability:['', Validators.required],
+      backCameras: this.fb.array([this.fb.group({ cameraDetail: [''] })], Validators.required),
       //  mobileNetworks: [''],
-      frontCameras: this.fb.array([this.fb.group({ cameraDetail: [''] })]),
-      Files: this.fb.array([this.fb.group({ File: [''] })])
+      frontCameras: this.fb.array([this.fb.group({ cameraDetail: [''] })], Validators.required),
+      Files: this.fb.array([this.fb.group({ File: [''] })], Validators.required)
     })
 
 
@@ -120,11 +120,9 @@ export class AddMobileComponent implements OnInit {
   }
 
   onChange(data: any) {
-    debugger;
     let insertIntoObject = { internetNetworkId: data };
      if(this.gettingMobileNetworksData.filter(a=>a.internetNetworkId == data).length > 0){
       var findingIndex =  this.gettingMobileNetworksData.findIndex(a=>a.internetNetworkId == data);
-      console.log(findingIndex);
       this.gettingMobileNetworksData.splice(findingIndex,1)
      }
      else{
@@ -191,7 +189,7 @@ export class AddMobileComponent implements OnInit {
       this._route.navigate(["Admin/Mobile"]);
     });
 
- 
+
 
   }
 

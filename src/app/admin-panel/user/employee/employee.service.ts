@@ -34,10 +34,18 @@ export class EmployeeService {
     return this.http.get("https://localhost:44344/api/Employee/GetEmployeesPayment");
   }
 
-  UpdateEmployeePayment(data:any){
-    return this.http.put("https://localhost:44344/api/Employee/UpdateEmployeePayment", data);
+  getEmployeesPaymentByPageNo(pageNo:number): Observable<any>{
+    return this.http.get("https://localhost:44344/api/Employee/GetEmployeeByPageNo/" + pageNo);
   }
 
+  PayingEmployeePayment(data:any){
+    return this.http.post("https://localhost:44344/api/Employee/PayingEmployeePayment", data);
+  }
+
+  searchEmplyeeData(data:any){
+    return this.http.post("https://localhost:44344/api/Employee/EmployeeSearch",data);
+
+  }
 
 
 

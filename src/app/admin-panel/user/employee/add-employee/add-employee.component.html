@@ -1,12 +1,10 @@
-<p>add-employee works!</p>
 <app-admin-header></app-admin-header>
-
-
 
 <mat-spinner mode="indeterminate"  *ngIf="showIndicator" class="matSpinner"></mat-spinner>
 
 
 <div class="container">
+  <h1 style="text-decoration: underline; font-size: 50px;">Add Employees</h1>
 
   <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMessage">
     {{errorMessage}}
@@ -16,7 +14,6 @@
   </div>
 
 
-  <h1 style="font-size: 33px;">Add Employee</h1>
 
   <!-- Adding Mobile Form -->
 

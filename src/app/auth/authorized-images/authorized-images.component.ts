@@ -60,10 +60,10 @@ export class AuthorizedImagesComponent implements OnInit {
     });
 
     this.reactiveFormData = this.fb.group({
-      completeAddress: [''],
-      phoneNumber: [''],
-      user_ID: [''],
-      countries: [''],
+      completeAddress: ['', Validators.required],
+      phoneNumber: ['',Validators.required],
+      user_ID: ['',Validators.required],
+      countries: ['',Validators.required],
       city_ID: ['', [Validators.required, Validators.min(1)]]
     })
 
@@ -159,7 +159,6 @@ export class AuthorizedImagesComponent implements OnInit {
     formFrom.append("phoneNumber", this.reactiveFormData.value['phoneNumber']);
     formFrom.append("user_ID", this.reactiveFormData.value['user_ID']);
     formFrom.append("city_ID", this.reactiveFormData.value['city_ID']);
-    console.log(formFrom);
     this.loadingIndicator = true;
     this.subscription = this._authService.UpdateUserAddress(formFrom).subscribe(() => {
       this.editDisplayModelUserAddress = false;

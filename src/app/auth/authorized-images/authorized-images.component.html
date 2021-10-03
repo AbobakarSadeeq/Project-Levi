@@ -125,36 +125,37 @@
 
 <p-dialog header="Adding User Image" [style]="{width: '500px'}"  [(visible)]="displayModel" (onHide)="hideModel(photoData)">
   <form #photoData="ngForm" (ngSubmit)="InsertPhoto(userPhotosData?.id, photoData)">
-    <input type="text" name="descriptionHeader" ngModel placeholder="Please Write the Header Photo"
+    <input required type="text" name="descriptionHeader" ngModel placeholder="Please Write the Header Photo"
       class="form-control"><br>
-    <input type="text" name="description" ngModel placeholder="Please Write the description of photo"
+    <input required type="text" name="description" ngModel placeholder="Please Write the description of photo"
       class="form-control"><br>
-    <input type="file" #MyFileInput class="" ngModel (change)="fileChange($event)" name="File"><br><br>
-    <button type="submit" class="btn btn-primary">Add Photo</button>
+    <input required type="file" #MyFileInput class="" ngModel (change)="fileChange($event)" name="File"><br><br>
+    <button type="submit" class="btn btn-primary" [disabled]="photoData.invalid">Add Photo</button>
   </form>
 </p-dialog>
 
 <p-dialog header="Adding User Address" [style]="{width: '500px'}" [(visible)]="displayModelUserAddress" (onHide)="hideModel(UserAddress)">
+
   <form #UserAddress="ngForm" (ngSubmit)="InsertUserAddress(UserAddress)">
-    <input type="text" name="completeAddress" ngModel placeholder="Please Write the Full Address"
+    <input  type="text" name="completeAddress" required ngModel placeholder="Please Write the Full Address"
       class="form-control"><br>
-    <input type="text" name="phoneNumber" ngModel placeholder="Please Write the Phone Number"
+    <input type="text" name="phoneNumber" required ngModel placeholder="Please Write the Phone Number"
       class="form-control"><br>
-      <input [hidden]="true"  type="text" name="user_ID" ngModel [ngModel]="userPhotosData?.id"
+      <input [hidden]="true"  type="text" name="user_ID"  ngModel [ngModel]="userPhotosData?.id"
       class="form-control">
 
-      <select name="country" class="form-select"  (change)="showingCities($event)">
+      <select required name="country" class="form-select"  (change)="showingCities($event)">
         <option selected disabled>------------------------Select-Country----------------------------
         </option>
         <option *ngFor="let country of Countries" [value]="country?.countryId">{{country?.countryName}}</option>
       </select><br>
 
-      <select #forValidation="ngModel" name="city_ID" class="form-select" ngModel [(ngModel)]="forSelected" >
+      <select required #forValidation="ngModel" name="city_ID" class="form-select" ngModel [(ngModel)]="forSelected" >
         <option [value]="null" >------------------------Select-City----------------------------
         </option>
         <option *ngFor="let city of CitiesDataFilterd" [value]="city?.cityId">{{city?.cityName}}</option>
       </select><br>
-    <button type="submit" [disabled]="forValidation.value == null"   class="btn btn-primary">Add Photo</button>
+    <button type="submit" [disabled]="forValidation.value == null && UserAddress.invalid"   class="btn btn-primary">Add Photo</button>
 
 
   </form>

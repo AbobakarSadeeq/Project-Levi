@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot):  boolean {
       if(localStorage.getItem('token')!= null ){
         let roles = route.data['permittedRoles'] as Array<string>;
-        console.log(roles);
         if(roles){
           const match = this._authService.roleMatch(roles);
         if(match){

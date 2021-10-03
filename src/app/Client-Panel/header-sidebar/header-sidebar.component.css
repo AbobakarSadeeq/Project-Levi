@@ -64,7 +64,7 @@ aside  .first-box{
   height: 200px;
   max-width: 250px;
   position: relative;
-  background-color: #5cb85c;
+  background-color: #86c5da;
   border-radius: 10px;
   margin-top:15px ;
   margin-left: 20px;
@@ -74,7 +74,7 @@ aside span{
   position: absolute;
   margin: 20px;
   margin-right: 15px;
-  background-color: #ffe77aff;
+  background-color: #FCF6F5FF;
   padding: 10px;
   width: 200px;
   border-radius: 10px;
@@ -92,13 +92,13 @@ aside .first-box-items{
   text-decoration: none;
 }
 .first-box-items li a:hover{
-  background-color: bisque;
+  background-color: #ade6d8;
 }
 aside .second-box{
   height: 150px;
   width: 250px;
   position: relative;
-  background-color: #5cb85c;
+  background-color: #86c5da;
   border-radius: 10px;
   margin-left: 20px;
 
@@ -107,7 +107,7 @@ aside .third-box{
   height: 180px;
   width: 250px;
   position: relative;
-  background-color: #5cb85c;
+  background-color: #86c5da;
   border-radius: 10px;
   margin-left: 20px;
 

@@ -43,10 +43,11 @@ export class HeaderSidebarComponent implements OnInit {
 
     this.imageValue = localStorage.getItem("photoUrl");
 
-
-    this.subscription = this._AuthService.GetLogInProfile().subscribe((data: any) => {
-      this.userDetails = data;
-    });
+    if(localStorage.getItem("token")){
+      this.subscription = this._AuthService.GetLogInProfile().subscribe((data: any) => {
+        this.userDetails = data;
+      });
+    }
 
 
 
@@ -54,6 +55,7 @@ export class HeaderSidebarComponent implements OnInit {
 
 
     // Filtering Siderbar and Badges
+    setTimeout(()=>{
       this.subscription = this._mobileService.getAllMobile().subscribe((data:any[])=>{
 
         // Filtering Brand Data
@@ -73,6 +75,7 @@ export class HeaderSidebarComponent implements OnInit {
           this.operatingSystemFilter.push({operatingSystem_Id:singleOperatingSystem?.operatingSystem_Id, operatingName:singleOperatingSystem.operatingName, OSBadges:OSVBadgesData})
         }
   });
+},1000);
 
 
 

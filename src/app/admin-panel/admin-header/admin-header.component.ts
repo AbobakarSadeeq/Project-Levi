@@ -19,7 +19,6 @@ export class AdminHeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.subscription = this._AuthService.profileData.subscribe((data: any) => {
-      console.log(data);
     });
 
     this._AuthService.profilePic.subscribe((data:any)=>{
@@ -32,7 +31,6 @@ export class AdminHeaderComponent implements OnInit {
 
 
     this.subscription = this._AuthService.GetLogInProfile().subscribe((data: any) => {
-      console.log(data);
       this.userDetails = data;
     });
 

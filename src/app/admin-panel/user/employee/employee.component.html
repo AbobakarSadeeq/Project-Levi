@@ -3,9 +3,14 @@
 
 <div class="container"  >
   <div class="row">
+
     <mat-tab-group animationDuration="0ms"   >
+
       <mat-tab label="Adding Employee" ><br>
+
         <button (click)="AddEmployee()" style="width: 1296px;" class="btn btn-warning"><i class="fas fa-plus">Add Employee</i></button>
+      <h1 style="text-decoration: underline; font-size: 50px; padding-top: 20px;">All Employees</h1>
+
         <h1 *ngIf="listEmployees ? listEmployees : 'Please Add Employee' "></h1>
     <div *ngFor="let employee of listEmployees"  style="margin-top: 10px;">
       <div class="card mb-3" >
@@ -30,19 +35,20 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                Employee Unpaid Monthly Payment
+                Employee Monthly Payment
               </button>
             </h2>
             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
               <div class="accordion-body">
 
                 <div>
-                  <p-table [value]="gettingUnpaidEmployeePayment" responsiveLayout="scroll">
+                  <p-table [value]="listEmployees" responsiveLayout="scroll">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Employee Name</th>
                             <th>Salary</th>
-                            <th>Payment</th>
+                            <th>EmployeeID</th>
+
                             <th>Payment Paying Date</th>
                             <th>Paying Employee</th>
 
@@ -50,59 +56,61 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-EmployeePayment>
                         <tr>
-                            <td><strong> {{EmployeePayment?.employee?.firstName + " " + EmployeePayment?.employee?.lastName}} </strong> </td>
-                            <td><strong>{{EmployeePayment?.employee?.salary}} </strong> </td>
-                            <td> <strong>{{EmployeePayment?.payment? false: "Un-Paid-Employee"}} </strong> </td>
-                            <td> <strong>{{EmployeePayment?.payment_At ? (EmployeePayment?.payment_At | date) : todayDate | date }} </strong> </td>
-                            <td><strong><button (click)="updateEmployeePayment(EmployeePayment)" class="btn btn-primary">Paying Employee</button> </strong> </td>
+                            <td><strong> {{EmployeePayment?.firstName + " " + EmployeePayment?.lastName}} </strong> </td>
+                            <td><strong>{{EmployeePayment?.salary}} </strong> </td>
+                            <td><strong>{{EmployeePayment?.employeeId}} </strong> </td>
+
+                            <td> <strong>{{todayDate | date }} </strong> </td>
+                            <td><strong><button (click)="PayingEmployeesPayment(EmployeePayment)" class="btn btn-primary">Paying Employee</button> </strong> </td>
                         </tr>
                     </ng-template>
                 </p-table>
                 </div>
 
-
-
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                Employee Monthly Paid Payment
-              </button>
-            </h2>
-            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-              <div class="accordion-body">
-
-                <div>
-                  <p-table [value]="gettingPaidEmployeePayment" responsiveLayout="scroll">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Employee Name</th>
-                            <th>Salary</th>
-                            <th>Payment</th>
-                            <th>Payment Paid Date</th>
-                            <th>Remove From Paying Employee</th>
-
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-EmployeePayment>
-                        <tr>
-                            <td><strong> {{EmployeePayment?.employee?.firstName + " " + EmployeePayment?.employee?.lastName}} </strong></td>
-                            <td><strong>{{EmployeePayment?.employee?.salary}} </strong> </td>
-                            <td> <strong> {{EmployeePayment?.payment? "Employee-Paid": " "}} </strong> </td>
-                            <td> <strong> {{EmployeePayment?.payment_At | date}}</strong></td>
-                            <td><strong><button (click)="updateEmployeePayment(EmployeePayment)" class="btn btn-danger">Remove from paying Employee</button> </strong> </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-                </div>
 
 
               </div>
             </div>
           </div>
         </div>
+      </mat-tab>
+
+
+      <!-- Employee Past Salaries Data -->
+
+      <mat-tab label="Employee Salaries">
+<br>
+            <h1 style="text-decoration: underline; font-size: 50px;">All Employees Payments History</h1>
+            <br>
+            <input style="width: 300px;"  id="selectSearch" #searchInput (keyup)="searchingEmployeeData($event)" type="text" class="form-control ms-auto" placeholder="Search Employees">
+            <div class="card" style="margin-top: 10px;">
+              <p-table [value]="getEmployees?.employeeData"   [rows]="8" [showCurrentPageReport]="true"
+                responsiveLayout="scroll"  currentPageReportTemplate="Showing {first} to {last} of {{getEmployees?.count}} entries"
+                [rowsPerPageOptions]="[8,25,50]">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Employee-Name</th>
+                    <th>Employee-PhoneNumber</th>
+                    <th>Salary</th>
+                    <th>Payment_At</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-Employee>
+                  <tr>
+                    <td>{{Employee?.employee?.firstName + " " + Employee?.employee?.lastName}}</td>
+                    <td>{{Employee?.employee?.phoneNumber}}</td>
+                    <td>{{Employee?.employee?.salary | currency: 'Rs ': 'symbol':'1.0'}}</td>
+                    <td>{{Employee?.payment_At | date}}</td>
+                  </tr>
+
+                </ng-template>
+
+              </p-table>
+
+        <ngb-pagination  style="padding-left: 525px;"  (pageChange)="tablePageNo($event)" [pageSize]="8"  [collectionSize]="getEmployees?.count" [page]="1" [directionLinks]="true"></ngb-pagination>
+
+            </div>
+
       </mat-tab>
     </mat-tab-group>
     <!-- List Role -->
@@ -118,7 +126,7 @@
 <p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
   <p-footer>
     <button type="button" pButton label="Cancel" (click)="cd?.reject()" class="btn btn-primary"></button>
-    <button type="button" class="btn btn-danger"  label="Ok" (click)="cd?.accept()">Remove</button>
+    <button type="button" class="btn {{payingEmployeeDialog? 'btn-warning':'btn-danger'}}"  label="Ok" (click)="cd?.accept()">{{payingEmployeeDialog?"Pay Employee":"Remove"}}</button>
   </p-footer>
 </p-confirmDialog>
 

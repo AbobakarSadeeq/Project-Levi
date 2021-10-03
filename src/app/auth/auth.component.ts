@@ -38,7 +38,6 @@ export class AuthComponent implements OnInit {
 
 
     if (localStorage.getItem('token') != null) {
-      console.log("Already LogIn");
       this.httpRoute.navigate(['/'])
     }
 
@@ -77,16 +76,14 @@ export class AuthComponent implements OnInit {
         this.httpRoute.navigate(['/'], { queryParams: { ClientName: responseData.userName, ClienEmail: responseData.email } });
       },
         (errorResponse: HttpErrorResponse) => {
-          console.log(errorResponse);
           setTimeout(()=>{this.loadingIndicator = false},2000);
           setTimeout(()=>{
             if (errorResponse.status == 400) {
-              this.errorMessage = "Incorrect UserName or Password!", "Authentication Faild";
+              this.errorMessage = "Incorrect username or password!", "Authentication failed";
             } else if (errorResponse.status == 0) {
-              this.errorMessage = "Your Server is Offline Please Come Back When It To Back Online Thank you!";
+              this.errorMessage = "Your server is offline olease come back when it to back online thank you!";
             }
             else {
-              console.log(errorResponse)
             }
           },2000);
 
@@ -99,7 +96,7 @@ export class AuthComponent implements OnInit {
       //Sign Up
       this.loadingIndicator = true;
       this._AuthService.SignUp(data.value).pipe(delay(3000)).subscribe((response: any) => {
-        this.successFullInsert = "Sign Up Operation SuccessFull! And Now Please Log In";
+        this.successFullInsert = "Sign up operation SuccessFull! and now please log in";
       this.loadingIndicator = false;
 
       },
@@ -113,7 +110,6 @@ export class AuthComponent implements OnInit {
       );
     }
 
-    data.reset();
   }
 
 }

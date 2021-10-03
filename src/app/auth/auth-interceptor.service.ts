@@ -23,7 +23,6 @@ import { tap } from "rxjs/operators";
                          if (err.status == 401){
                              localStorage.removeItem('token');
                              this.router.navigateByUrl('/Auth');
-                             console.log(err);
                          }
                          else if(err.status == 403){
                           this.router.navigate(['/notfound']);

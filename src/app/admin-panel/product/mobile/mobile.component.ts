@@ -16,7 +16,7 @@ export class MobileComponent implements OnInit {
   displayModal = false;
   myLoadingIndicator = false;
   showIndicator = false;
-  getMobiles: any[] = [];
+  getMobiles: any;
   gettingInternetNetwork: any[] = [];
   singleMobileData: any;
 
@@ -37,7 +37,17 @@ export class MobileComponent implements OnInit {
   }
 
   getAllMobiles() {
-    this.subscription = this._MobileService.getAllMobile().subscribe((data: any) => {
+    this.subscription = this._MobileService.getMobilesbyTablePage(1).subscribe((data: any) => {
+      this.getMobiles = data;
+    });
+  }
+
+
+
+  // Pagination Event
+  tablePageNo(paginationNumber:any){
+    this.getMobiles.mobileData = [];
+    this.subscription = this._MobileService.getMobilesbyTablePage(paginationNumber).subscribe((data: any) => {
       this.getMobiles = data;
     });
   }
