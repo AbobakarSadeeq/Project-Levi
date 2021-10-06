@@ -8,6 +8,7 @@ import { AccountModule } from './admin-panel/account/account.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { AuthService } from './auth/auth.service';
+import { ShoppingCartComponent } from './Client-Panel/shopping-cart/shopping-cart.component';
 @NgModule({
   declarations: [
     AppComponent,

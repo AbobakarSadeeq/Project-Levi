@@ -14,6 +14,9 @@ const routes: Routes = [
   {path: 'Mobile/:multiData', loadChildren: () => import ('./Client-Panel/client-mobile/client-module.module').then( m=> m.ClientModuleModule )},
   {path: 'Auth', loadChildren: () => import ('./auth/auth.module').then( m=> m.AuthModule )},
   {path: 'User/EditUser/:id', loadChildren: () => import ('./auth/authorized-images/authorized-images.module').then( m=> m.AuthorizedImagesModule )},
+  {path: 'Cart', loadChildren: () => import ('../app/Client-Panel/shopping-cart/shopping-cart.module').then( m=> m.ShoppingCartModule )},
+
+
 
   // All Admin Side Paths
   // localHost:4200/Admin/AnotherModule
