@@ -2,12 +2,76 @@
 
 
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-offset-2"></div>
-    <div class="col">
-      <p>asdjlsakdwedwadjisa</p>
+
+
+
+    <div class="col-8">
+
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <div style=" display: inline-block; position: relative;" >
+              <a><i style="position: absolute;top: 0;right: 0;"  class="fas fa-times btn" ></i></a>
+              <th style="padding-bottom: 40px;" scope="row"><img src="https://mall.olx.com.pk/uploads/spree/images/attachments/000/049/860/small/1.jpg?1628024219" width="80px" height="80px" alt=""></th>
+            </div>
+            <td>Iphone 11 Pro Max 64GB Gold</td>
+
+            <td>$300.50</td>
+            <td style="padding-top:26px !important">
+              <button class="btn" style="background-color:white;" (click)="subtractingProductQuantity()"   [disabled]="addQuantity==1" >-</button>&nbsp;
+              <span>{{addQuantity}}</span> &nbsp;
+              <button class="btn" style="background-color:white;" (click)="addingProductQuantity()"  [disabled]="addQuantity == 10"  >+</button>
+            </td>
+            <td>$901.50</td>
+          </tr>
+          <tr>
+            <div style=" display: inline-block; position: relative;" >
+            <a><i style="position: absolute;top: 0;right: 0; "  class="fas fa-times btn" ></i></a>
+              <th style="padding-bottom: 40px;" scope="row"><img src="https://mall.olx.com.pk/uploads/spree/images/attachments/000/049/860/small/1.jpg?1628024219" width="80px" height="80px" alt=""><br>
+              </th>
+            </div>
+            <td>Iphone 11 Pro Max 64GB Gold</td>
+            <td>$300.50</td>
+            <td style="padding-top:26px !important">
+              <button  class="btn" style="background-color:white;"  (click)="subtractingProductQuantity()" [disabled]="addQuantity==1" >-</button>&nbsp;
+              <span>{{addQuantity}}</span> &nbsp;
+              <button class="btn" style="background-color:white;" (click)="addingProductQuantity()"  [disabled]="addQuantity == 10"  >+</button>
+            </td>
+            <td>$901.50</td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
+
+    <div class="col-2" style="background-color: #BFD834; width: 289px; height: 540px;">
+      <div style="text-align: center;">
+
+        <hr style="border-bottom: 5px solid black; width: 261px;">
+        <br><br><br><br><br><br><br><br><br>
+        <span ><b>CART TOTAL</b> &nbsp; <span style="font-size: 24px;"><b>$123.90</b></span></span>
+        <button class="btn btn-lg" onMouseOver="this.style.background='white', this.style.color='black'"
+          onMouseOut="this.style.background='black',this.style.color='white'"
+          style="margin-top:10px; background-color: black; color: white; border-radius: 20px;">CHECKOUT <i class="fas fa-shopping-bag"></i> </button>
+
+      </div>
+    </div>
+
+
+
   </div>
 </div>
 
@@ -15,4 +79,4 @@
 
 
 
-<mat-spinner mode="indeterminate"  *ngIf="showIndicator" class="matSpinner"></mat-spinner>
+<mat-spinner mode="indeterminate" *ngIf="showIndicator" class="matSpinner"></mat-spinner>

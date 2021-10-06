@@ -11,3 +11,13 @@
   filter: alpha(opacity=40);
   left: 50%; margin-left: -4em;
 }
+
+.confirmCartItem :hover {
+
+  background-color: #3e8e41
+
+}
+
+td{
+  padding-top: 35px;
+}

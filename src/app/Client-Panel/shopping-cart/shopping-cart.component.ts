@@ -8,7 +8,7 @@ import { Subscription, SubscriptionLike } from 'rxjs';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-
+  addQuantity = 0;
   subscription:SubscriptionLike;
   showIndicator = false;
   constructor(private _route:Router, private _activateRoute:ActivatedRoute) { }
@@ -18,10 +18,22 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
+
+  addingProductQuantity() {
+    this.addQuantity++
+  }
+
+  subtractingProductQuantity() {
+    this.addQuantity--
+  }
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.subscription.unsubscribe();
   }
+
+
+
 
 }
