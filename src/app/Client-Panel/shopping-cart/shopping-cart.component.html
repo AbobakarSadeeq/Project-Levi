@@ -54,26 +54,106 @@
           </tr>
         </tbody>
       </table>
-
     </div>
-
     <div class="col-2" style="background-color: #BFD834; width: 289px; height: 540px;">
       <div style="text-align: center;">
 
         <hr style="border-bottom: 5px solid black; width: 261px;">
         <br><br><br><br><br><br><br><br><br>
         <span ><b>CART TOTAL</b> &nbsp; <span style="font-size: 24px;"><b>$123.90</b></span></span>
-        <button class="btn btn-lg" onMouseOver="this.style.background='white', this.style.color='black'"
+        <button (click)="showModelDialog()" class="btn btn-lg" onMouseOver="this.style.background='white', this.style.color='black'"
           onMouseOut="this.style.background='black',this.style.color='white'"
           style="margin-top:10px; background-color: black; color: white; border-radius: 20px;">CHECKOUT <i class="fas fa-shopping-bag"></i> </button>
 
       </div>
     </div>
 
-
-
   </div>
 </div>
+
+
+<p-dialog [(visible)]="displayModal" [dismissableMask]="true" [modal]="true" [style]="{width: '80vw', height: '100vw'}"
+  [draggable]="false" [resizable]="false">
+  <p-header>
+    <h1 style="text-align: center;">Cart And Delivery Address</h1>
+  </p-header>
+
+  <!-- Purchased Cart Item -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Total</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <th style="padding-bottom: 40px;" scope="row"><img src="https://mall.olx.com.pk/uploads/spree/images/attachments/000/049/860/small/1.jpg?1628024219" width="80px" height="80px" alt=""></th>
+              <td>Iphone 11 Pro Max 64GB Gold</td>
+              <td>$300.50</td>
+              <td>$901.50</td>
+            </tr>
+            <tr>
+                <th style="padding-bottom: 40px;" scope="row"><img src="https://mall.olx.com.pk/uploads/spree/images/attachments/000/049/860/small/1.jpg?1628024219" width="80px" height="80px" alt=""><br>
+                </th>
+              <td>Iphone 11 Pro Max 64GB Gold</td>
+              <td>$300.50</td>
+              <td>$901.50</td>
+            </tr>
+          </tbody>
+        </table>
+        <hr>
+        <!-- Cart Total Items -->
+        <h2 style="text-align: right; padding-right: 110px;">CART TOTAL = $193.90</h2>
+        <hr>
+
+      </div>
+    </div>
+  </div>
+
+<!-- Home Address -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <h1 *ngIf="userAddress == true">Please Add Your Address</h1>
+        <div class="card" *ngIf="userAddress != true">
+          <div class="card-body">
+            <a style="cursor: pointer; float: right;" (click)="goToAddressEdit()" >
+              <i class="fas fa-edit"></i>
+            </a>
+        <h4><b>Name</b></h4>
+        <p>{{userDetails?.userName}}</p>
+
+        <h4><b>Phone Number</b></h4>
+        <p>{{userAddress?.phoneNumber}}</p>
+
+        <h4><b>Home Address</b></h4>
+        <p>{{userAddress?.completeAddress}}</p>
+
+        <h4><b>Email Address</b></h4>
+        <p>{{userDetails?.email}}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Accept Order -->
+  <p-footer>
+  <button  class="btn btn-primary" [disabled]="userAddress== true" (click)="orderConfirm()">Order Confirm!</button>
+  </p-footer>
+</p-dialog>
+
 
 
 

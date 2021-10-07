@@ -6,6 +6,8 @@ import { SharedModule } from 'src/app/shared/Modules/shared.module';
 import { HeaderSidebarModule } from 'src/app/Client-Panel/header-sidebar/header-sidebar.module';
 import { AuthorizedImagesComponent } from './authorized-images.component';
 import { ConfirmationService } from 'primeng/api';
+import { UserAddressComponent } from '../user-address/user-address.component';
+import { UserAddressModule } from '../user-address/user-address.module';
 
 
 @NgModule({
@@ -14,7 +16,8 @@ import { ConfirmationService } from 'primeng/api';
     CommonModule,
     AuthorizedImagesRoutingModule,
     SharedModule,
-    HeaderSidebarModule
+    HeaderSidebarModule,
+    UserAddressModule
   ],
   providers:[ConfirmationService]
 })
