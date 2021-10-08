@@ -7,6 +7,7 @@ import { OperatingSystemService } from 'src/app/admin-panel/extra-product-info/o
 import { MobileComponent } from 'src/app/admin-panel/product/mobile/mobile.component';
 import { MobileService } from 'src/app/admin-panel/product/mobile/mobile.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-header-sidebar',
@@ -27,11 +28,18 @@ export class HeaderSidebarComponent implements OnInit {
   imageValue:any;
   userDetails: any;
 
-  constructor(private _mobileService :MobileService, private _operatingSystemService: OperatingSystemService, private _brand: BrandService, private route: Router, private _AuthService: AuthService) { }
+  numberOfItemsInCart = 0;
+
+  constructor(private _shoppingCartService:ShoppingCartService ,private _mobileService :MobileService, private _operatingSystemService: OperatingSystemService, private _brand: BrandService, private route: Router, private _AuthService: AuthService) { }
 
   ngOnInit(): void {
 
+    this.cartItemFunc();
 
+    // Subscribing the Cart Items Number
+    this.subscription = this._shoppingCartService.cartItemsNumber.subscribe((data:any)=>{
+        this.numberOfItemsInCart = data
+    })
 
     this.subscription = this._AuthService.profileData.subscribe((data: any) => {
     });
@@ -110,6 +118,17 @@ export class HeaderSidebarComponent implements OnInit {
   isLoggedIn() {
     const token = localStorage.getItem('token');
     return !!token;
+  }
+
+  cartItemFunc(){
+    if (localStorage.getItem('ProductCartData') != null){
+      var cartValue: [] = JSON.parse(localStorage.getItem('ProductCartData')!);
+      let quantitySum:number = 0;
+      for(var gettingQuantity of cartValue){
+      quantitySum = quantitySum + gettingQuantity['quantity'];
+    }
+      this.numberOfItemsInCart = quantitySum;
+   }
   }
 
   ngOnDestroy(): void {

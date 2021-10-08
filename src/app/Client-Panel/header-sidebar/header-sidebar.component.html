@@ -23,7 +23,7 @@
         <li class="nav-item ">
           <a class="nav-link cartButton" style="cursor:pointer; padding-top: 15px;" [routerLink]="['/Cart']"> <i class="fa"
               style="font-size:24px;">&#xf07a;</i>
-            <span class='badge badge-warning' id='lblCartCount'>1 </span></a>
+            <span class='badge' style="color: #2f6f55; background: #f9f7dc;" id='lblCartCount'> {{numberOfItemsInCart}}</span></a>
         </li>
         <li class="nav-item dropdown" *ngIf="isLoggedIn()">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
