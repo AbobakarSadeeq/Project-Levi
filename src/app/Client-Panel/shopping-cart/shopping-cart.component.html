@@ -10,6 +10,14 @@
 
     <div class="col-8">
 
+<!-- <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="orderMessage">
+  {{orderMessage}}
+  <a (click)="removeMessage()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </a>
+</div> -->
+
+
       <table class="table table-borderless">
         <thead>
           <tr>
@@ -56,7 +64,7 @@
 </div>
 
 
-<p-dialog [(visible)]="displayModal" [dismissableMask]="true" [modal]="true" [style]="{width: '80vw', height: '100vw'}"
+<p-dialog [(visible)]="displayModal" (onHide)="removeMessage()" [dismissableMask]="true" [modal]="true" [style]="{width: '80vw', height: '100vw'}"
   [draggable]="false" [resizable]="false">
   <p-header>
     <h1 style="text-align: center;">Cart And Delivery Address</h1>
@@ -67,6 +75,13 @@
   <div class="container">
     <div class="row">
       <div class="col">
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="orderMessage">
+  {{orderMessage}}
+  <a (click)="removeMessage()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </a>
+</div>
 
         <table class="table table-borderless">
           <thead>
@@ -130,7 +145,7 @@
 
   <!-- Accept Order -->
   <p-footer>
-  <button  class="btn btn-primary" [disabled]="userAddress== true" (click)="orderConfirm()">Order Confirm!</button>
+  <button  class="btn btn-primary" [disabled]="userAddress== true" (click)="sendUserOrder()">Order Confirm!</button>
   </p-footer>
 </p-dialog>
 

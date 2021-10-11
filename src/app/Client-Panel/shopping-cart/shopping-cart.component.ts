@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
@@ -52,10 +53,10 @@ export class ShoppingCartComponent implements OnInit {
 
   // This will get the
   showModelDialogOfCheckOut() {
+    this.showIndicator = true;
     if(localStorage.getItem("token") == null){
       this._route.navigate(["/auth"]);
     }
-    this.displayModal = true;
 
     // Getting the Profile Data because to Get the User Address
     var gettingId: any;
@@ -66,6 +67,8 @@ export class ShoppingCartComponent implements OnInit {
 
     // Getting the User Address
     setTimeout(() => {
+    this.displayModal = true;
+    this.showIndicator = false;
       this.subscription = this._AuthService.GetUserAddress(gettingId).subscribe((data: any) => {
         if (data) {
           this.userAddress = data;
@@ -79,13 +82,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   // Order Confirm Method and it will send data to the API.
-  orderConfirm() {
-    this.showIndicator = true;
-    setTimeout(() => {
-      this.showIndicator = false;
-      this.displayModal = false;
-    }, 3000)
-  }
+
 
 
   // Adding the Product Quantity or change or Edit the Quantity
@@ -170,6 +167,55 @@ export class ShoppingCartComponent implements OnInit {
       }
     });
 
+  }
+
+
+  // Sending User Order
+
+
+
+
+  orderMessage:any = null;
+  sendUserOrder(){
+    this.showIndicator = true;
+    let getDataFromOrderDetailLocalStorage = JSON.parse(localStorage.getItem("ProductCartData")!);
+    let convertDataFromLocalStorage = getDataFromOrderDetailLocalStorage;
+    let storeCustomOrderDetailData:any [] = [];
+    for(let orderData of convertDataFromLocalStorage){
+      storeCustomOrderDetailData.push(
+        {
+          mobile_Id:orderData?.mobileId,
+          totalWithQuantityPrice: orderData.mobilePrice * orderData.quantity,
+          quantity: orderData.quantity,
+          productName: orderData.mobileName,
+          // User Address
+          userName: this.userDetails?.userName,
+          userEmail: this.userDetails?.email,
+          userAddress: this.userAddress?.completeAddress,
+          mobileNumber: this.userAddress?.phoneNumber,
+
+        }
+      )
+    }
+
+    this.subscription = this._shoppingCartService.sendOrder(this.userDetails.id, storeCustomOrderDetailData).subscribe((data:any)=>{
+      debugger;
+      this.showIndicator = false;
+      this.displayModal = false;
+    //  this.orderMessage = data;
+      localStorage.removeItem("ProductCartData");
+      this._route.navigate(["/"]);
+      this.showCheckOutButton = false;
+    },(orderError:HttpErrorResponse)=>{
+      console.log(orderError);
+      this.orderMessage = orderError.error;
+      this.showIndicator = false;
+    });
+
+  }
+
+  removeMessage(){
+    this.orderMessage = null;
   }
 
   ngOnDestroy(): void {
