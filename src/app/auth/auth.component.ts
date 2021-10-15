@@ -79,7 +79,7 @@ export class AuthComponent implements OnInit {
           setTimeout(()=>{this.loadingIndicator = false},2000);
           setTimeout(()=>{
             if (errorResponse.status == 400) {
-              this.errorMessage = "Incorrect username or password!", "Authentication failed";
+              this.errorMessage = "Incorrect Email or password!", "Authentication failed";
             } else if (errorResponse.status == 0) {
               this.errorMessage = "Your server is offline olease come back when it to back online thank you!";
             }

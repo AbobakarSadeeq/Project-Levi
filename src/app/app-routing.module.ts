@@ -33,6 +33,8 @@ const routes: Routes = [
   {path: 'Admin/Employee', loadChildren: () => import ('./admin-panel/user/employee/employee.module').then( m=> m.EmployeeModule ), canActivate: [AuthGuard]},
   {path: 'Admin/AddEmployee', loadChildren: () => import ('./admin-panel/user/employee/add-employee/add-employee.module').then( m=> m.AddEmployeeModule ), canActivate: [AuthGuard]},
   {path: 'Admin/EditEmployee/:id', loadChildren: () => import ('./admin-panel/user/employee/update-employee/update-employee.module').then( m=> m.UpdateEmployeeModule ), canActivate: [AuthGuard]},
+  {path: 'Admin/UserOrders', loadChildren: () => import ('./admin-panel/user/user-orders/user-orders.module').then( m=> m.UserOrdersModule ), canActivate: [AuthGuard]},
+  {path: 'Admin/UserOrders/:id', loadChildren: () => import ('./admin-panel/user/user-orders/user-order-detail/user-order-detail.module').then( m=> m.UserOrderDetailModule ), canActivate: [AuthGuard]},
 
 
 

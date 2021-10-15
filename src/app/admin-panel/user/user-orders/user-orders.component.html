@@ -1,0 +1,100 @@
+
+<app-admin-header></app-admin-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <mat-tab-group animationDuration="0ms" [selectedIndex]="0" (selectedTabChange)="onTabChanged($event)">
+        <mat-tab>
+           <ng-template mat-tab-label>
+            <span matBadgeOverlap="false">Pendding Orders
+              <span class="badge badge-light" style="color: #ffffff; background: black;" id='lblCartCount'> {{countPendingOrders}}</span>
+            </span>
+          </ng-template>
+
+          <!-- Data of Pending Orders -->
+
+            <p-table [value]="penddingOrders" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Order-Number</th>
+                        <th>Order-Date</th>
+                        <th>Order-Status</th>
+                        <th>User-name</th>
+                        <th>Country</th>
+                        <th>Order-items</th>
+                        <th>Order-Detail</th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-penddingOrders>
+                    <tr>
+                        <td>{{penddingOrders?.orderId}}</td>
+                        <td>{{penddingOrders?.orderDate}}</td>
+                        <td> <p style="background-color: #f0ad4e; width: 103px;border-radius: 6px;">{{penddingOrders?.orderStatus}}</p></td>
+                        <td>{{penddingOrders?.userName}}</td>
+                        <td>{{penddingOrders?.countryName}}</td>
+                        <td>{{penddingOrders?.orderItemsCount}}</td>
+                        <td><a [routerLink]="['/Admin/UserOrders/', penddingOrders?.orderId]" [queryParams]="{orderStatus:onTabChangeOrder}"  class="btn btn-primary">Orders-Items-Detail</a></td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+
+
+
+
+
+
+        </mat-tab>
+
+        <!-- Accepted Order and Shipped -->
+        <mat-tab >
+          <ng-template mat-tab-label>
+            <span matBadgeOverlap="false">Accepted Orders
+              <span class="badge badge-light" style="color: #ffffff; background: green;" id='lblCartCount'> {{countShippedOrders}}</span>
+            </span>
+          </ng-template>
+
+          <p-table [value]="shippedOrder" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Order-Number</th>
+                  <th>Order-Date</th>
+                  <th>Order-Status</th>
+                  <th>User-name</th>
+                  <th>Country</th>
+                  <th>Order-items</th>
+                  <th>Order-Detail</th>
+
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-penddingOrders>
+              <tr>
+                  <td>{{penddingOrders?.orderId}}</td>
+                  <td>{{penddingOrders?.orderDate}}</td>
+                  <td> <p style="background-color: #61f04e; width: 103px;border-radius: 6px;">{{penddingOrders?.orderStatus}}</p></td>
+                  <td>{{penddingOrders?.userName}}</td>
+                  <td>{{penddingOrders?.countryName}}</td>
+                  <td>{{penddingOrders?.orderItemsCount}}</td>
+                  <td><a [routerLink]="['/Admin/UserOrders/', penddingOrders?.orderId]" [queryParams]="{orderStatus:onTabChangeOrder}"  class="btn btn-primary">Orders-Items-Detail-History</a></td>
+              </tr>
+          </ng-template>
+
+      </p-table>
+
+
+
+
+
+
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+</div>
+</div>
+
+
+<mat-spinner mode="indeterminate"  *ngIf="showIndicator" class="matSpinner"></mat-spinner>

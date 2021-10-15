@@ -177,6 +177,7 @@ export class ShoppingCartComponent implements OnInit {
 
   orderMessage:any = null;
   sendUserOrder(){
+    debugger;
     this.showIndicator = true;
     let getDataFromOrderDetailLocalStorage = JSON.parse(localStorage.getItem("ProductCartData")!);
     let convertDataFromLocalStorage = getDataFromOrderDetailLocalStorage;
@@ -185,7 +186,7 @@ export class ShoppingCartComponent implements OnInit {
       storeCustomOrderDetailData.push(
         {
           mobile_Id:orderData?.mobileId,
-          totalWithQuantityPrice: orderData.mobilePrice * orderData.quantity,
+          price: orderData.mobilePrice,
           quantity: orderData.quantity,
           productName: orderData.mobileName,
           // User Address
@@ -199,7 +200,6 @@ export class ShoppingCartComponent implements OnInit {
     }
 
     this.subscription = this._shoppingCartService.sendOrder(this.userDetails.id, storeCustomOrderDetailData).subscribe((data:any)=>{
-      debugger;
       this.showIndicator = false;
       this.displayModal = false;
     //  this.orderMessage = data;
@@ -213,6 +213,9 @@ export class ShoppingCartComponent implements OnInit {
     });
 
   }
+
+
+
 
   removeMessage(){
     this.orderMessage = null;
