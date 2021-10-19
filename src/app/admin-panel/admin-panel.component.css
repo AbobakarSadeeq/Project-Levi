@@ -8,6 +8,10 @@
   background-repeat:no-repeat;
   background-position:center;
   z-index:10000000;
-  filter: alpha(opacity=40);
+  filter: alpha(opacity=40); 
   left: 50%; margin-left: -4em;
+}
+
+#chart {
+  max-width: 650px;
 }

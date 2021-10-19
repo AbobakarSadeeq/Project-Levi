@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { AuthService } from './auth/auth.service';
 import { ShoppingCartComponent } from './Client-Panel/shopping-cart/shopping-cart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import { ShoppingCartComponent } from './Client-Panel/shopping-cart/shopping-car
     SharedModule,
     AccountModule,
     BrowserAnimationsModule,
-
+    NgApexchartsModule
   ],
   providers: [AuthService, {
     provide: HTTP_INTERCEPTORS,

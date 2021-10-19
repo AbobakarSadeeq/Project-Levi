@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router, RouterEvent } from '@angular/router';
+import { delay } from 'rxjs/operators';
 import { MobileService } from './admin-panel/product/mobile/mobile.service';
 
 @Component({
@@ -12,7 +13,10 @@ export class AppComponent {
   /**
    *
    */
-  constructor(private _router: Router, private _MobileService: MobileService) {
+   loading: boolean;
+  constructor(private _router: Router, private _MobileService: MobileService, private router: Router) {
+
+
 
   }
   ngOnInit(): void {

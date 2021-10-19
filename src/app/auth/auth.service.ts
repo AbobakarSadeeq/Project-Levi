@@ -41,6 +41,10 @@ export class AuthService {
     this._route.navigate(["/Auth"]);
   }
 
+  getUserCount(){
+    return this.httpRequest.get("https://localhost:44344/api/Account/UserAccountCount");
+  }
+
   //Getting the Data who's is LogIn
   GetLogInProfile() {
     return this.httpRequest.get("https://localhost:44344/api/Account")

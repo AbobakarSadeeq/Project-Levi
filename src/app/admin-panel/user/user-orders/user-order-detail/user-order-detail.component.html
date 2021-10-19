@@ -20,7 +20,9 @@
       <p>PhoneNumber: <strong>{{userOrderDetailData?.phoneNumber}}</strong></p>
       <p>Address: <strong>{{userOrderDetailData?.completeAddress}}</strong></p>
       <p>Order Requested: <strong>{{userOrderDetailData?.orderDate | date :'dd - MMM - yyyy,  h:mm:ss a' }} </strong></p>
-      <p>Order Accepted: <strong>{{shippedDataShowning == false? (userOrderDetailData?.shippedDate | date :'dd - MMM - yyyy,  h:mm:ss a'):"Not yet"}}</strong></p>
+      <p>Order Accepted: <strong>{{shippedDataShowning == false? (userOrderDetailData?.shippedDate | date :'dd - MMM - yyyy,  h:mm:ss a'):"Not yet"}}</strong>
+      <strong>{{cancelMessage}}</strong>
+      </p>
     </div>
 
 

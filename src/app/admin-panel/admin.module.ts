@@ -6,6 +6,7 @@ import { AdminPanelComponent } from './admin-panel.component';
 import { SharedModule } from '../shared/Modules/shared.module';
 import { AdminHeaderModule } from './admin-header/admin-header.module';
 import { OperatingSystemComponent } from './extra-product-info/operating-system/operating-system.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [AdminPanelComponent, OperatingSystemComponent],
@@ -13,7 +14,8 @@ import { OperatingSystemComponent } from './extra-product-info/operating-system/
     CommonModule,
     AdminRoutingModule,
     SharedModule,
-    AdminHeaderModule
-  ]
+    AdminHeaderModule,
+    NgApexchartsModule
+  ],
 })
 export class AdminModule { }

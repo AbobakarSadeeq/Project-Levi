@@ -64,7 +64,9 @@
       </div>
      </li><br>
       <li style="display: inline-block; padding-left: 0px;">
-      <div>
+
+
+      <div *ngIf="!stockAvailability">
        <span style="color: grey; font-size: 12px;">Quantity of Product</span>
        <div style="margin-top: 4px; margin-bottom: 16px;">
         <button class="btn" style="background-color:#C8C8C8;"  (click)="subtractingProductQuantity()" [disabled]="addQuantity==1" >-</button>&nbsp;
@@ -72,9 +74,17 @@
         <button class="btn" style="background-color:#C8C8C8;" (click)="addingProductQuantity()" [disabled]="addQuantity == 10"  >+</button>
        </div>
       </div>
+
+
      </li>
     </ul>
-    <!-- Not necessary-Part -->
+
+    <div *ngIf="stockAvailability">
+      <h1 style="color:red;">Currently unavailable.</h1>
+      <p>We don't know when or if this item will be back in stock.</p>
+    </div>
+
+    <div  *ngIf="!stockAvailability">
     <img src="../../../assets//Pictures/12.PNG" alt="">
     <br><br><br>
     <div>
@@ -86,6 +96,13 @@
     <button type="button" class="btn btn-primary " style="  border-radius: 15%; width: 200px; height: 45px;" id="addData" data-toggle="modal"
     data-target="#exampleModal">Buy Now</button>
     </div>
+  </div>
+
+
+
+
+
+
   </div>
     </div>
     <mat-spinner mode="indeterminate"  *ngIf="showIndicator" class="matSpinner"></mat-spinner>

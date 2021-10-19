@@ -25,7 +25,13 @@ export class UserOrdersService {
     return this._Http.put("https://localhost:44344/api/UserOrder/AcceptOrder",data);
   }
 
+  chartMonthData(): Observable<any>{
+    return this._Http.get("https://localhost:44344/api/UserOrder/OrdersChart")
+  }
 
+  CancelOrderAdmin(dataId:number){
+    return this._Http.delete("https://localhost:44344/api/UserOrder/" + dataId);
+  }
 
 
 

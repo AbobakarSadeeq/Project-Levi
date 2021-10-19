@@ -18,6 +18,7 @@ export class MobileDetailComponent implements OnInit {
   addQuantity = 1;
   gettingInternetNetwork: any[] = [];
   showIndicator = false;
+  stockAvailability = false;
 
   // Cart Data
   itemsCart: any = [];
@@ -35,7 +36,12 @@ export class MobileDetailComponent implements OnInit {
     const getUrlId = this._routeActivate.snapshot.params['id'];
     this.subscription = this._MobileService.getSingleMobile(getUrlId).subscribe((data: any) => {
       this.mobileDetailData = data;
-    });
+      // if Stock is not available then remove the buy functionallity
+      if(!data.stockAvailiability){
+        this.stockAvailability = true;
+
+      }
+  });
 
     setTimeout(() => {
       this.getInternetNetworks(this.mobileDetailData?.networksMobiles);

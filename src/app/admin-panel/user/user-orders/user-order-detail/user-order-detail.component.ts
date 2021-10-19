@@ -18,7 +18,7 @@ export class UserOrderDetailComponent implements OnInit {
   orderAcceptedTime:any;
   totalPriceSingleOrder: number = 0;
   shippedDataShowning = true;
-
+  cancelMessage:any = null;
 
   subscription:Subscription;
   showIndicator = false;
@@ -31,6 +31,9 @@ export class UserOrderDetailComponent implements OnInit {
     const getQueryParam = this._activeRoute.snapshot.queryParamMap.get('orderStatus');
     if(getQueryParam =="shipped"){
       this.shippedDataShowning = false;
+    }else if(getQueryParam == "canceled"){
+      this.shippedDataShowning = false;
+      this.cancelMessage = "Order canceled";
     }
 
     this.orderAcceptedTime =  new Date();
@@ -61,9 +64,9 @@ export class UserOrderDetailComponent implements OnInit {
         })
       }
     });
-   
+
   }
-      
+
 
 
 }
