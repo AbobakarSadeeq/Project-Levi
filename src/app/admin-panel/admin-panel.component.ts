@@ -16,6 +16,7 @@ import {
 } from "ng-apexcharts";
 import { MobileService } from './product/mobile/mobile.service';
 import { isThisTypeNode } from 'typescript';
+import { AccountService } from './account/account.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries ;
@@ -47,10 +48,13 @@ export class AdminPanelComponent implements OnInit {
   mobilesTotalWorth:number = 0;
   userCount:number  = 0;
 
+  accountData:any;
+
+
 
   subscription:Subscription;
   showIndicator = false;
-  constructor(private _authService:AuthService, private _userOrders:UserOrdersService, private _mobileData:MobileService) {
+  constructor(private _accountService:AccountService, private _authService:AuthService, private _userOrders:UserOrdersService, private _mobileData:MobileService) {
 
 
   }
@@ -193,6 +197,7 @@ export class AdminPanelComponent implements OnInit {
     this.shippedOrders();
     this.gettingChartMonthlyData();
     this.gettingDashBoardData();
+    this.getAccountDetail();
   }
 
 
@@ -217,14 +222,21 @@ export class AdminPanelComponent implements OnInit {
       this.mobileAvailabilityCount = data.filter(a=>a.stockAvailiability == true).length;
       for(var allMobilePriceCost of data){
         debugger;
-        this.mobilesTotalWorth = this.mobilesTotalWorth + allMobilePriceCost.mobilePrice;
+        this.mobilesTotalWorth = this.mobilesTotalWorth + (allMobilePriceCost.mobilePrice * allMobilePriceCost.quantity);
+
       }
     });
 
     this.subscription = this._authService.getUserCount().subscribe((countUser:any)=>{
       this.userCount = countUser;
-    })
+    });
 
+  }
+
+  getAccountDetail(){
+    this.subscription = this._accountService.getlatestedAccountDetail().subscribe((data:any)=>{
+      this.accountData = data;
+    })
   }
 
 

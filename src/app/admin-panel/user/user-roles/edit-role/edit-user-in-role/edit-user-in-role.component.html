@@ -5,6 +5,7 @@
   <div class="card-body">
 
     <h1>Users In This Role</h1>
+    <h1 style="color: red;">{{multipleAdminErrormsg}}</h1>
     <form >
       <div *ngFor="let singleUser of userAllData">
         <mat-checkbox (change)="onChange(singleUser)"

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+import { AccountService } from 'src/app/admin-panel/account/account.service';
 import { CarouselService } from 'src/app/admin-panel/extra-product-info/carousel/carousel.service';
 import { MobileService } from 'src/app/admin-panel/product/mobile/mobile.service';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -45,5 +46,9 @@ export class HomeComponent implements OnInit {
       this.MaxSellOutMobiles = data;
     })
   }
+
+
+
+
 
 }

@@ -10,9 +10,11 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { AuthService } from './auth/auth.service';
 import { ShoppingCartComponent } from './Client-Panel/shopping-cart/shopping-cart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { ClientOrderComponent } from './Client-Panel/client-order/client-order.component';
 @NgModule({
   declarations: [
     AppComponent,
+    
 
 
 

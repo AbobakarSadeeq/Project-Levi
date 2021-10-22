@@ -15,6 +15,8 @@ const routes: Routes = [
   {path: 'Auth', loadChildren: () => import ('./auth/auth.module').then( m=> m.AuthModule )},
   {path: 'User/EditUser/:id', loadChildren: () => import ('./auth/authorized-images/authorized-images.module').then( m=> m.AuthorizedImagesModule )},
   {path: 'Cart', loadChildren: () => import ('../app/Client-Panel/shopping-cart/shopping-cart.module').then( m=> m.ShoppingCartModule )},
+  {path: 'User/Orders/:id', loadChildren: () => import ('./Client-Panel/client-order/client-order.module').then( m=> m.ClientOrderModule ), canActivate: [AuthGuard]},
+  {path: 'User/ClientOrder/:id', loadChildren: () => import ('./Client-Panel/client-order/client-order-detail/client-order-detail.module').then( m=> m.ClientOrderDetailModule ), canActivate: [AuthGuard]},
 
 
 
@@ -34,7 +36,7 @@ const routes: Routes = [
   {path: 'Admin/AddEmployee', loadChildren: () => import ('./admin-panel/user/employee/add-employee/add-employee.module').then( m=> m.AddEmployeeModule ), canActivate: [AuthGuard]},
   {path: 'Admin/EditEmployee/:id', loadChildren: () => import ('./admin-panel/user/employee/update-employee/update-employee.module').then( m=> m.UpdateEmployeeModule ), canActivate: [AuthGuard]},
   {path: 'Admin/UserOrders', loadChildren: () => import ('./admin-panel/user/user-orders/user-orders.module').then( m=> m.UserOrdersModule ), canActivate: [AuthGuard]},
-  {path: 'Admin/UserOrders/:id', loadChildren: () => import ('./admin-panel/user/user-orders/user-order-detail/user-order-detail.module').then( m=> m.UserOrderDetailModule ), canActivate: [AuthGuard]},
+  {path: 'Admin/UserOrdersDetail/:id', loadChildren: () => import ('./admin-panel/user/user-orders/user-order-detail/user-order-detail.module').then( m=> m.UserOrderDetailModule ), canActivate: [AuthGuard]},
 
 
 

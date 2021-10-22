@@ -24,7 +24,7 @@
     <form #roleForm="ngForm" (ngSubmit)="creatingRoles(roleForm)">
       <div class="form-group">
         <label for="Name"><strong>Role Name</strong></label>
-        <input pattern="^[A-Z][a-zA-Z0-9]+([a-zA-Z0-9][a-zA-Z0-9])*[a-zA-Z0-9]+$" required #val="ngModel" type="text" ngModel
+        <input pattern="^[A-Z][a-zA-Z]([^0-9]*)+([a-zA-Z][a-zA-Z])*[a-zA-Z]+$" required #val="ngModel" type="text" ngModel
           id="name" class="form-control" name="RoleName" required placeholder="RoleName" />
          <span *ngIf="val.invalid &&val.touched" style="color:red;">Please Write the Role Name first Letter capital
           or any spaces an underscore are not allowed</span>

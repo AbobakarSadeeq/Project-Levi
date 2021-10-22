@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { EmployeeService } from './employee.service';
 import { fromEvent } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { AccountService } from '../../account/account.service';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -16,23 +17,25 @@ import { delay } from 'rxjs/operators';
 
 export class EmployeeComponent implements OnInit {
 
-  subscription:Subscription;
+  subscription: Subscription;
   showIndicator = false;
-  payingEmployeeDialog:any = null;
+  payingEmployeeDialog: any = null;
   listEmployees: any[] = [];
 
-  gettingEmployeesForPayment:any[] = [];
-  todayDate:Date;
-  getEmployees:any;
+  gettingEmployeesForPayment: any[] = [];
+  todayDate: Date;
+  getEmployees: any;
 
 
   displayModal = false;
-  singleEmployeeDetail:any;
+  singleEmployeeDetail: any;
+  accountBalanceNotFoundMesg: any = null;
 
-  constructor(private _employeeService:EmployeeService,private _authService:AuthService, private DialogService: ConfirmationService, private route:Router) { }
+
+  constructor(private _accountService: AccountService, private _employeeService: EmployeeService, private _authService: AuthService, private DialogService: ConfirmationService, private route: Router) { }
 
   ngOnInit(): void {
-    this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
+    this.subscription = this._authService.loadingSpinnerLogOut.subscribe((data: any) => {
       this.showIndicator = data;
     });
 
@@ -46,25 +49,47 @@ export class EmployeeComponent implements OnInit {
   }
 
 
-  gettingAllEmployeePayments(){
-    this.subscription = this._employeeService.getAllEmployeesPayment().subscribe((data:any[])=>{
+  gettingAllEmployeePayments() {
+    this.subscription = this._employeeService.getAllEmployeesPayment().subscribe((data: any[]) => {
       this.gettingEmployeesForPayment = data;
     })
   }
 
-  PayingEmployeesPayment(data:any){
+  employeePaymentDone:any = null;
+  PayingEmployeesPayment(data: any) {
     this.payingEmployeeDialog = true;
-      this.DialogService.confirm({
-        message: 'Are you sure you want to give monthly salary to employee?',
-        accept: () => {
-          this.showIndicator = true;
-          data.payment = true;
-          this.subscription = this._employeeService.PayingEmployeePayment(data).subscribe(()=>{
+    var accountData:any;
+    this.DialogService.confirm({
+      message: 'Are you sure you want to give monthly salary to employee?',
+      accept: () => {
+        debugger;
+        this.subscription = this._accountService.getlatestedAccountDetail().subscribe((data: any) => {
+          accountData = data;
+        });
+
+        setTimeout(()=>{
+          if (accountData == null || accountData == undefined) {
+            this.accountBalanceNotFoundMesg = "Please add the account the balance first";
             this.showIndicator = false;
-            this.getAllEmployeesPaymentByPageNo();
-          });
-        }
-      });
+          } else {
+            this.showIndicator = true;
+            data.payment = true;
+            this.subscription = this._employeeService.PayingEmployeePayment(data).subscribe(() => {
+              this.showIndicator = false;
+              this.getAllEmployeesPaymentByPageNo();
+               this.employeePaymentDone = "Payment successfully done!"
+               setTimeout(()=>{
+                this.employeePaymentDone = null;
+               },3000)
+            });
+          }
+        },1000)
+
+
+
+
+      }
+    });
 
 
   }
@@ -72,25 +97,25 @@ export class EmployeeComponent implements OnInit {
 
 
 
-  searchingEmployeeData(event:Event){
+  searchingEmployeeData(event: Event) {
     this.getEmployees.employeeData = [];
     var data = (event.target as HTMLInputElement)?.value;
-    let searchData = {searchTerm:data, pageNo:1};
-    this._employeeService.searchEmplyeeData(searchData).pipe(delay(1000)).subscribe((data:any)=>{
+    let searchData = { searchTerm: data, pageNo: 1 };
+    this._employeeService.searchEmplyeeData(searchData).pipe(delay(1000)).subscribe((data: any) => {
       this.getEmployees = data;
     })
 
   }
 
-  tablePageNo(pageNo:number){
+  tablePageNo(pageNo: number) {
     this.getEmployees.employeeData = [];
-    var searchInputData =  (document.getElementById('selectSearch') as HTMLInputElement).value;
-    if(searchInputData){
-      let combineData = {pageNo:pageNo, searchTerm:searchInputData};
-      this.subscription = this._employeeService.searchEmplyeeData(combineData).subscribe((data:any)=>{
+    var searchInputData = (document.getElementById('selectSearch') as HTMLInputElement).value;
+    if (searchInputData) {
+      let combineData = { pageNo: pageNo, searchTerm: searchInputData };
+      this.subscription = this._employeeService.searchEmplyeeData(combineData).subscribe((data: any) => {
         this.getEmployees = data;
       });
-    }else{
+    } else {
       this.subscription = this._employeeService.getEmployeesPaymentByPageNo(pageNo).subscribe((data: any) => {
         this.getEmployees = data;
       });
@@ -99,13 +124,13 @@ export class EmployeeComponent implements OnInit {
 
 
 
-  openDeleteDialogConfarmation(dataId:any){
+  openDeleteDialogConfarmation(dataId: any) {
     this.payingEmployeeDialog = false;
     this.DialogService.confirm({
       message: 'Are you sure you want to Delete Employee?',
       accept: () => {
         this.showIndicator = true;
-        this.subscription = this._employeeService.DeleteEmployee(dataId).subscribe(()=>{
+        this.subscription = this._employeeService.DeleteEmployee(dataId).subscribe(() => {
           this.getAllEmployees();
           this.showIndicator = false;
           this.getAllEmployeesPaymentByPageNo();
@@ -115,27 +140,27 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  getAllEmployees(){
-    this.subscription = this._employeeService.getAllEmployees().subscribe((data)=>{
+  getAllEmployees() {
+    this.subscription = this._employeeService.getAllEmployees().subscribe((data) => {
       this.listEmployees = data;
       this.gettingAllEmployeePayments();
     })
   }
 
-  getAllEmployeesPaymentByPageNo(){
-    this.subscription = this._employeeService.getEmployeesPaymentByPageNo(1).subscribe((data)=>{
+  getAllEmployeesPaymentByPageNo() {
+    this.subscription = this._employeeService.getEmployeesPaymentByPageNo(1).subscribe((data) => {
       this.getEmployees = data;
 
     })
   }
 
-  AddEmployee(){
+  AddEmployee() {
     this.route.navigate(['/Admin/AddEmployee']);
   }
 
-  showDetailEmployee(dataId:any){
+  showDetailEmployee(dataId: any) {
     this.displayModal = true;
-    this.subscription = this._employeeService.getSingleEmployee(dataId).subscribe((data:any)=>{
+    this.subscription = this._employeeService.getSingleEmployee(dataId).subscribe((data: any) => {
       this.singleEmployeeDetail = data;
     })
   }

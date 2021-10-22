@@ -37,7 +37,7 @@
                         <td>{{penddingOrders?.userName}}</td>
                         <td>{{penddingOrders?.countryName}}</td>
                         <td>{{penddingOrders?.orderItemsCount}}</td>
-                        <td><a [routerLink]="['/Admin/UserOrders/', penddingOrders?.orderId]" [queryParams]="{orderStatus:onTabChangeOrder}"  class="btn btn-primary">Orders-Items-Detail</a></td>
+                        <td><a [routerLink]="['/Admin/UserOrdersDetail/', penddingOrders?.orderId]" [queryParams]="{orderStatus:onTabChangeOrder}"  class="btn btn-primary">Orders-Items-Detail</a></td>
                         <td><button (click)="CancelingOrderByAdmin(penddingOrders?.orderId)" class="btn btn-danger">Cancel-Order</button></td>
                     </tr>
                 </ng-template>
@@ -81,7 +81,7 @@
                   <td>{{acceptOrders?.userName}}</td>
                   <td>{{acceptOrders?.countryName}}</td>
                   <td>{{acceptOrders?.orderItemsCount}}</td>
-                  <td><a [routerLink]="['/Admin/UserOrders/', acceptOrders?.orderId]" [queryParams]="{orderStatus:onTabChangeOrder}"  class="btn btn-primary">Orders-Items-Detail-History</a></td>
+                  <td><a [routerLink]="['/Admin/UserOrdersDetail/', acceptOrders?.orderId]" [queryParams]="{orderStatus:onTabChangeOrder}"  class="btn btn-primary">Orders-Items-Detail-History</a></td>
               </tr>
           </ng-template>
 
@@ -125,7 +125,7 @@
                   <td>{{cancelOrders?.userName}}</td>
                   <td>{{cancelOrders?.countryName}}</td>
                   <td>{{cancelOrders?.orderItemsCount}}</td>
-                  <td><a [routerLink]="['/Admin/UserOrders/', cancelOrders?.orderId]" [queryParams]="{orderStatus:onTabChangeOrder}"  class="btn btn-primary">Orders-Items-Detail-History</a></td>
+                  <td><a [routerLink]="['/Admin/UserOrdersDetail/', cancelOrders?.orderId]" [queryParams]="{orderStatus:onTabChangeOrder}"  class="btn btn-primary">Orders-Items-Detail-History</a></td>
               </tr>
           </ng-template>
 

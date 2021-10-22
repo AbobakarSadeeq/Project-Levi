@@ -21,6 +21,8 @@ export class EditUserInRoleComponent implements OnInit {
   userAllData: any[] = [];
   subscription: Subscription;
   formData: FormGroup;
+  roleName:string;
+  multipleAdminErrormsg:any = null;
 
   constructor(private fb: FormBuilder, private _authService: AuthService, private _activateRoute: ActivatedRoute, private route: Router, private _userRole: UserRolesService) { }
 
@@ -28,9 +30,14 @@ export class EditUserInRoleComponent implements OnInit {
 
 
     const findId = this._activateRoute.snapshot.params['id'];
+	  this.subscription =   this._userRole.getDataById(findId).subscribe((myData:any)=>{
+      this.roleName = myData.roleName;
+    });
+
     this.subscription = this._userRole.getEditUserRole(findId).subscribe((Data: any) => {
       this.userAllData = Data;
     });
+
 
 
 
@@ -39,9 +46,7 @@ export class EditUserInRoleComponent implements OnInit {
       this.showIndicator = data;
     });
   }
-
   onChange(changeData: any) {
-    debugger;
     const findingIndex = this.userAllData.indexOf(changeData);
     if (this.userAllData[findingIndex].isSelected == true) {
       this.userAllData[findingIndex].isSelected = false;
@@ -52,20 +57,44 @@ export class EditUserInRoleComponent implements OnInit {
 
   }
 
-
   updateSubmitUsersRole() {
+    debugger;
     const formFrom = new FormData();
-    for (let i = 0; i < this.userAllData.length; i++) {
-      formFrom.append(`model[${i.toString()}].userId`, this.userAllData[i].userId);
-      formFrom.append(`model[${i.toString()}].userEmail`, this.userAllData[i].userEmail);
-      formFrom.append(`model[${i.toString()}].isSelected`, this.userAllData[i].isSelected);
+
+    if(this.roleName == "Admin"){
+      if(this.userAllData.filter(a=>a.isSelected == true).length == 1){
+        for (let i = 0; i < this.userAllData.length; i++) {
+          formFrom.append(`model[${i.toString()}].userId`, this.userAllData[i].userId);
+          formFrom.append(`model[${i.toString()}].userEmail`, this.userAllData[i].userEmail);
+          formFrom.append(`model[${i.toString()}].isSelected`, this.userAllData[i].isSelected);
+        }
+
+        this.showIndicator = true;
+        this._userRole.editUserRole(formFrom, this._activateRoute.snapshot.params['id']).subscribe(() => {
+          setTimeout(() => { this.showIndicator = false }, 3000);
+          this.route.navigate(["/Admin/UserRoles"]);
+        });
+
+      }else{
+        // if multiple selected then show an error
+        this.multipleAdminErrormsg = "Sorry admin is only one allow";
+      }
+    }else{
+
+      for (let i = 0; i < this.userAllData.length; i++) {
+        formFrom.append(`model[${i.toString()}].userId`, this.userAllData[i].userId);
+        formFrom.append(`model[${i.toString()}].userEmail`, this.userAllData[i].userEmail);
+        formFrom.append(`model[${i.toString()}].isSelected`, this.userAllData[i].isSelected);
+      }
+
+      this.showIndicator = true;
+      this._userRole.editUserRole(formFrom, this._activateRoute.snapshot.params['id']).subscribe(() => {
+        setTimeout(() => { this.showIndicator = false }, 3000);
+        this.route.navigate(["/Admin/UserRoles"]);
+      });
     }
 
-    this.showIndicator = true;
-    this._userRole.editUserRole(formFrom, this._activateRoute.snapshot.params['id']).subscribe(() => {
-      setTimeout(() => { this.showIndicator = false }, 3000);
-      this.route.navigate(["/Admin/UserRoles"]);
-    });
+ 
 
 
   }

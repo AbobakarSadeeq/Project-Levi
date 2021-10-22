@@ -5,6 +5,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ClientOrderService } from 'src/app/Client-Panel/client-order/client-order.service';
 import { UserOrdersService } from '../user-orders.service';
 
 @Component({
@@ -22,14 +23,13 @@ export class UserOrderDetailComponent implements OnInit {
 
   subscription:Subscription;
   showIndicator = false;
-  constructor(private confirmationService: ConfirmationService,private _activeRoute:ActivatedRoute, private _route:Router,private _authService:AuthService, private _userOrders:UserOrdersService) { }
-
+  constructor(private _clientOrder:ClientOrderService ,private confirmationService: ConfirmationService,private _activeRoute:ActivatedRoute, private _route:Router,private _authService:AuthService, private _userOrders:UserOrdersService) { }
   ngOnInit(): void {
 
     // hide Button of Confirm Order in Shipped Tab
     debugger;
     const getQueryParam = this._activeRoute.snapshot.queryParamMap.get('orderStatus');
-    if(getQueryParam =="shipped"){
+    if(getQueryParam =="shipped" || getQueryParam == "ClientPendding"){
       this.shippedDataShowning = false;
     }else if(getQueryParam == "canceled"){
       this.shippedDataShowning = false;
@@ -40,6 +40,9 @@ export class UserOrderDetailComponent implements OnInit {
     this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
       this.showIndicator = data;
     });
+
+    // Client can not accept Order
+
 
 
     const getOrderId = this._activeRoute.snapshot.params['id'];
