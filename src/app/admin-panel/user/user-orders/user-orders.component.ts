@@ -48,7 +48,6 @@ export class UserOrdersComponent implements OnInit {
   }
 
   onTabChanged(event:any){
-    console.log(event);
     if(event.index == 0){
       this.onTabChangeOrder = "pending";
     }else if(event.index == 1){

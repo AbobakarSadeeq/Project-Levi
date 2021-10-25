@@ -131,6 +131,23 @@ export class HeaderSidebarComponent implements OnInit {
    }
   }
 
+
+  OnChangeNavigate(){
+   var payload = JSON.parse(window.atob(localStorage.getItem('token')!.split('.')[1]));
+   var userRole = payload.role;
+    if(userRole == "Admin" || userRole == "ADMIN"){
+      // then navigate to Admin Dashboard
+      this.route.navigate(['/Admin/Dashboard']);
+    }else{
+      // for employees goes to user page
+      this.route.navigate(['/Admin/UserOrders']);
+    }
+
+
+  }
+
+
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.

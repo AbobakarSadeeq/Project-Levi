@@ -6,9 +6,9 @@
           <a class="nav-link " style="cursor:pointer; font-size: 18px;" [routerLink]="['']" routerLinkActive="active">
             <i class="fas fa-mobile" style="font-size: 30px;">&nbsp; New Mobiles Home Delivery</i> </a>
         </li>
-        <li *ngIf="isLoggedIn()" class="nav-item ">
-          <a class="nav-link " style="cursor:pointer; font-size: 15px; padding-top: 16px;"
-            [routerLink]="['/Admin/Dashboard']" routerLinkActive="active">Admin Panel</a>
+        <li  *ngIf="isLoggedIn()" class="nav-item ">
+          <a *appHasRole="['Admin','ADMIN','Employee', 'EMPLOYEE']" class="nav-link " style="cursor:pointer; font-size: 15px; padding-top: 16px;"
+            (click)="OnChangeNavigate()" routerLinkActive="active">Admin Panel</a>
         </li>
         <li class="nav-item ">
           <a class="nav-link" style="cursor:pointer; font-size: 15px; padding-top: 16px;" routerLinkActive="active"> |
@@ -36,7 +36,7 @@
             <li> <a class="dropdown-item" style="cursor:pointer" [routerLink]="['/User/EditUser/',userDetails?.id]">
                 Edit Profile
               </a></li>
-              
+
               <li><a [routerLink]="['/User/Orders/', userDetails?.id]" class="dropdown-item" style="cursor:pointer" style="cursor:pointer"> Orders</a></li>
 
             <li><a class="dropdown-item" style="cursor:pointer" (click)="isLogOut()" style="cursor:pointer"> Log Out

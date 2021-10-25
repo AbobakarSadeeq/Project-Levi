@@ -72,7 +72,8 @@ export class EditUserInRoleComponent implements OnInit {
         this.showIndicator = true;
         this._userRole.editUserRole(formFrom, this._activateRoute.snapshot.params['id']).subscribe(() => {
           setTimeout(() => { this.showIndicator = false }, 3000);
-          this.route.navigate(["/Admin/UserRoles"]);
+          this.route.navigate(["Auth"]);
+          localStorage.removeItem('token');
         });
 
       }else{
@@ -94,7 +95,7 @@ export class EditUserInRoleComponent implements OnInit {
       });
     }
 
- 
+
 
 
   }

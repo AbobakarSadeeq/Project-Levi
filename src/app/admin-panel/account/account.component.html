@@ -4,7 +4,7 @@
 
 <div class="container">
   <div class="row">
-    <button *ngIf="accountList.length != 0 ? !hideAddButton: hideAddButton" (click)="AddAccountBalance()"  class="btn btn-warning"><i class="fas fa-plus">Add Account Balance</i></button><br>
+    <button *ngIf="accountList.length > 0 ? !hideAddButton: hideAddButton" (click)="AddAccountBalance()"  class="btn btn-warning"><i class="fas fa-plus">Add Account Balance</i></button><br>
     <button *ngIf="accountList.length == 0 ? !hideAddButton: hideAddButton" (click)="EditAccountModel()" class="btn btn-info"><i class="fas fa-edit">Edit Account Balance</i></button>
     <div class="col-12">
 
@@ -190,8 +190,10 @@
 <p-dialog header="Adding Account Balance" [style]="{width: '500px'}" [(visible)]="displayModelAccountBalance" (onHide)="hideModel()">
 
   <form #accountForm="ngForm" (ngSubmit)="addAccount(accountForm)">
-    <input  type="number" name="balance" required ngModel placeholder="Please write the balance you want to add"
+    <input required ngModel #accountBalance="ngModel" pattern="^[0-9]*[1-9]+" type="number"     name="balance"  placeholder="Please write the balance you want to add"
       class="form-control"><br>
+      <span style="color: red;" *ngIf="accountBalance.invalid && accountBalance.touched || accountBalance.value < 0">You cannot add negative value</span>
+
       <input [hidden]="true"  type="text" name="user_ID"  ngModel [ngModel]="userDetails?.id"
       class="form-control">
 
@@ -206,11 +208,13 @@
 <p-dialog header="Editing Account Balance" [style]="{width: '500px'}" [(visible)]="editdisplayModelAccountBalance" (onHide)="hideModel()">
 
   <form #accountFormData="ngForm" (ngSubmit)="EditAccount(accountFormData)">
-    <input name="balance"  type="number"  ngModel  [(ngModel)]="editFormData.balance"     placeholder="Please write the balance you want to add"
+    <input required ngModel #accountBalanceUpdate="ngModel" pattern="^[0-9]*[1-9]+"  name="balance"  type="number"   [(ngModel)]="editFormData.balance"     placeholder="Please write the balance you want to add"
       class="form-control"><br>
+    <span style="color: red;" *ngIf="accountBalanceUpdate.invalid && accountBalanceUpdate.touched ">You cannot add negative value</span><br>
+
        <input [hidden]="true"  type="text" name="user_ID"  ngModel [(ngModel)]="userDetails.id"
       class="form-control">
 
-    <button  type="submit" [disabled]="accountForm.value == null && accountForm.invalid"   class="btn btn-primary">Submit</button>
+    <button  type="submit" [disabled]="accountBalanceUpdate.value == null && accountBalanceUpdate.invalid || accountBalanceUpdate.value < 0"   class="btn btn-primary">Submit</button>
   </form>
 </p-dialog>

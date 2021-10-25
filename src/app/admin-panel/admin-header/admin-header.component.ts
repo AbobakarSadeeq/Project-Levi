@@ -45,6 +45,8 @@ export class AdminHeaderComponent implements OnInit {
       this.loadingIndicator = false;
     }, 2500)
     localStorage.removeItem("photoUrl");
+    localStorage.removeItem("ProductCartData");
+
   }
 
   ngOnDestroy(): void {

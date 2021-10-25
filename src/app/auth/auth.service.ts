@@ -13,6 +13,7 @@ import { debounceTime, delay } from 'rxjs/operators';
 export class AuthService {
 
   decode: any; // this property used for in appRoleHas Directive.
+
   profileData = new Subject<any>();
   profilePic = new Subject<any>();
   loadingSpinnerLogOut = new Subject<any>();
@@ -54,6 +55,7 @@ export class AuthService {
     var isMatch = false;
     var payload = JSON.parse(window.atob(localStorage.getItem('token')!.split('.')[1]));
     var userRole = payload.role;
+    console.log(userRole);
     this.decode = userRole;
     allowedRoles.forEach((_element: any) => {
       if (userRole == _element) {
@@ -63,6 +65,7 @@ export class AuthService {
       return false;
     });
     return isMatch;
+
 
   }
 

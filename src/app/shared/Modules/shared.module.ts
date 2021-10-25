@@ -8,11 +8,11 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { AdminHeaderComponent } from 'src/app/admin-panel/admin-header/admin-header.component';
 import { AdminHeaderModule } from 'src/app/admin-panel/admin-header/admin-header.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HasRoleDirective } from '../directive-role/has-role.directive';
 
 
 @NgModule({
-
-
+  declarations:[HasRoleDirective],
   imports: [
     NgbModule,
 
@@ -21,7 +21,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PrimengModule,
     MaterialModule,
     BasicModule,
-    NgbModule
+    NgbModule,
+    HasRoleDirective
   ]
 })
 export class SharedModule { }

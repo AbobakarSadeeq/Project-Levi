@@ -29,7 +29,7 @@ export class EmployeeComponent implements OnInit {
 
   displayModal = false;
   singleEmployeeDetail: any;
-  accountBalanceNotFoundMesg: any = null;
+  accountBalanceMesg: any = null;
 
 
   constructor(private _accountService: AccountService, private _employeeService: EmployeeService, private _authService: AuthService, private DialogService: ConfirmationService, private route: Router) { }
@@ -57,6 +57,7 @@ export class EmployeeComponent implements OnInit {
 
   employeePaymentDone:any = null;
   PayingEmployeesPayment(data: any) {
+    console.log(data);
     this.payingEmployeeDialog = true;
     var accountData:any;
     this.DialogService.confirm({
@@ -69,9 +70,16 @@ export class EmployeeComponent implements OnInit {
 
         setTimeout(()=>{
           if (accountData == null || accountData == undefined) {
-            this.accountBalanceNotFoundMesg = "Please add the account the balance first";
+            this.accountBalanceMesg = "Please add the account the balance first";
             this.showIndicator = false;
-          } else {
+          } else if(accountData.balance == 0 || accountData.balance < data.salary){
+            this.accountBalanceMesg = "You have low balance to pay";
+            this.showIndicator = false;
+            setTimeout(()=>{
+              this.employeePaymentDone = null;
+             },4000)
+          }
+         else {
             this.showIndicator = true;
             data.payment = true;
             this.subscription = this._employeeService.PayingEmployeePayment(data).subscribe(() => {
@@ -84,7 +92,6 @@ export class EmployeeComponent implements OnInit {
             });
           }
         },1000)
-
 
 
 

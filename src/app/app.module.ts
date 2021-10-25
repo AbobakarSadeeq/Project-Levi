@@ -14,10 +14,6 @@ import { ClientOrderComponent } from './Client-Panel/client-order/client-order.c
 @NgModule({
   declarations: [
     AppComponent,
-    
-
-
-
 
   ],
   imports: [

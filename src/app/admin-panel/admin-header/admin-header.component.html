@@ -49,27 +49,32 @@
 
 <!-- SideBar Content -->
 <p-sidebar [(visible)]="visibleSidebar1" [style]="{width:'18em', background:'black'}">
-  <a [routerLink]="['/Admin/Dashboard']"><i class="fas fa-tachometer"
+  <div *appHasRole="['Admin','ADMIN']" >
+    <a [routerLink]="['/Admin/Dashboard']"><i class="fas fa-tachometer"
       style="font-size: 25px; color:#ffffff; margin-left:35px;"> Dashboard </i></a>
-  <hr style="color: white;">
-  <a [routerLink]="['/Admin/Account']" routerLinkActive="active"><i class="fas fa-dollar-sign"
+     <hr style="color: white;">
+    </div>
+
+  <div *appHasRole="['Admin','ADMIN']">
+    <a   [routerLink]="['/Admin/Account']" routerLinkActive="active"><i class="fas fa-dollar-sign"
       style="font-size: 25px; color:#ffffff; margin-left:35px;"> Account </i></a>
   <hr style="color: white;">
-  <a style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
+  </div>
+  <a  style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
     (click)="showDropDown.thirdDropDown= !showDropDown.thirdDropDown"><i
       style="font-size: 25px; color:#ffffff; margin-left:35px;" class="fas fa-caret-down" aria-hidden="true">&nbsp;
       User</i></a>
   <div *ngIf="showDropDown.thirdDropDown">
     <ul style="font-size: 17px;">
-      <li style="color: #ffffff; padding: 8px;">
+      <li  *appHasRole="['Admin','ADMIN']" style="color: #ffffff; padding: 8px;">
         <a [routerLink]="['/Admin/UserRoles']" routerLinkActive="active-link" routerLinkActive="active"><i
             class="fas fa-user-tag" style="font-size: 20px; color:#ffffff; margin-left:35px;"> Users Roles </i></a>
       </li>
-      <li style="color: #ffffff; padding: 8px;">
+      <li *appHasRole="['Admin','ADMIN']" style="color: #ffffff; padding: 8px;">
         <a [routerLink]="['/Admin/Employee']" routerLinkActive="active-link" routerLinkActive="active"><i
             class="fas fa-user" style="font-size: 20px; color:#ffffff; margin-left:35px;"> Employee </i></a>
       </li>
-      <li style="color: #ffffff; padding: 8px;">
+      <li *appHasRole="['Admin','ADMIN', 'Employee', 'EMPLOYEES']" style="color: #ffffff; padding: 8px;">
         <a [routerLink]="['/Admin/UserOrders']" routerLinkActive="active-link" routerLinkActive="active"><i
             class="fas fa-bullseye" style="font-size: 20px; color:#ffffff; margin-left:35px;"> User-Orders </i></a>
       </li>
@@ -80,7 +85,7 @@
 
 
   <!-- Drop-Down-List -->
-  <a style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
+  <a *appHasRole="['Admin','ADMIN', 'Employee', 'EMPLOYEES']" style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
     (click)="showDropDown.firstDropDown= !showDropDown.firstDropDown"><i
       style="font-size: 25px; color:#ffffff; margin-left:35px;" class="fas fa-caret-down" aria-hidden="true">&nbsp;
       Product</i></a>
@@ -93,8 +98,11 @@
     </ul>
   </div>
   <hr style="color: white;">
+
+
+
   <!-- Second Drop-Down-List -->
-  <a style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
+  <a *appHasRole="['Admin','ADMIN', 'Employee', 'EMPLOYEES']" style="cursor: pointer;" routerLinkActive="active-link" routerLinkActive="active"
     (click)="showDropDown.secondDropDown= !showDropDown.secondDropDown"><i
       style="font-size: 25px; color:#ffffff; margin-left:35px;" class="fas fa-caret-down" aria-hidden="true">&nbsp;
       Extra Product Info</i></a>
