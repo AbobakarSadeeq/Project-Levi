@@ -14,20 +14,23 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class HomeComponent implements OnInit {
 
   showIndicator = false;
-  subscription:Subscription;
-  CarouselAllData:any[] = [];
-  MaxSellOutMobiles:any[] = [];
-
-  constructor(private _authService:AuthService ,private _CarouselService:CarouselService, private _MobileService:MobileService) {
+  subscription: Subscription;
+  CarouselAllData: any[] = [];
+  MaxSellOutMobiles: any[] = [];
 
 
-   }
+
+
+  constructor(private _authService: AuthService, private _CarouselService: CarouselService, private _MobileService: MobileService) {
+  }
 
   ngOnInit(): void {
 
 
 
-    this.subscription =  this._authService.loadingSpinnerLogOut.subscribe((data:any)=>{
+
+
+    this.subscription = this._authService.loadingSpinnerLogOut.subscribe((data: any) => {
       this.showIndicator = data;
     });
 
@@ -35,20 +38,19 @@ export class HomeComponent implements OnInit {
     this.getTopSellOut();
   }
 
-  getAllCarousel(){
-    this.subscription =  this._CarouselService.getAllCarouselImages().subscribe((data:any)=>{
-        this.CarouselAllData = data;
-      });
-    }
+  getAllCarousel() {
+    this.subscription = this._CarouselService.getAllCarouselImages().subscribe((data: any) => {
+      this.CarouselAllData = data;
+    });
+  }
 
-  getTopSellOut(){
-    this.subscription = this._MobileService.GetMaxSellOut().subscribe((data:any)=>{
+  getTopSellOut() {
+    this.subscription = this._MobileService.GetMaxSellOut().subscribe((data: any) => {
       this.MaxSellOutMobiles = data;
     })
   }
 
 
 
-
-
 }
+
